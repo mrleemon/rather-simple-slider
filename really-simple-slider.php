@@ -49,22 +49,22 @@ class Really_Simple_Slider {
 		add_action( 'init', array( $this, 'load_language' ) );
 		add_action( 'init', array( $this, 'register_post_type' ) );
 
-        add_action( 'init', array($this, 'init' ) );
-		add_action( 'wp_enqueue_scripts', array($this, 'enqueue_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array($this, 'admin_enqueue_scripts' ) );
-		add_action( 'save_post', array($this, 'save_slider' ) );
-		add_action( 'media_buttons', array($this, 'display_button' ) );
+        add_action( 'init', array( $this, 'init' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+		add_action( 'save_post', array( $this, 'save_slider' ) );
+		add_action( 'media_buttons', array( $this, 'display_button' ) );
 		
 		add_action( 'show_slider', array($this, 'show_slider' ) );
 		
-		//columns
+		// Columns
 		add_filter( 'manage_slider_posts_columns', array( $this, 'slider_columns' ) );
 		add_action( 'manage_slider_posts_custom_column',  array( $this, 'slider_custom_column' ), 5, 2 );
 
 		// Enqueue the thickbox (required for button to work)
-		add_action( 'admin_footer', array($this, 'print_thickbox' ) );
+		add_action( 'admin_footer', array( $this, 'print_thickbox' ) );
 		
-		add_shortcode( 'slider', array($this, 'shortcode_slider' ) );
+		add_shortcode( 'slider', array( $this, 'shortcode_slider' ) );
 	
 	}
 
@@ -150,7 +150,7 @@ class Really_Simple_Slider {
 			'menu_icon' => 'dashicons-images-alt2',
 			'supports' => array( 'title' ), 
 			'labels' => $labels,
-			'register_meta_box_cb' => array($this , 'add_slider_meta_boxes' )
+			'register_meta_box_cb' => array( $this , 'add_slider_meta_boxes' )
 		);
 
 		register_post_type( 'slider', $args );
@@ -163,9 +163,9 @@ class Really_Simple_Slider {
 	*/
 
 	function add_slider_meta_boxes() {
-		add_meta_box( 'slider-shortcode', __( 'Shortcode', 'really-simple-slider' ), array($this , 'slider_shortcode_meta_box' ), 'slider', 'side', 'default' );
-		add_meta_box( 'slider-options', __( 'Options', 'really-simple-slider' ), array($this , 'slider_options_meta_box' ), 'slider', 'side', 'default' );
-		add_meta_box( 'slider-items', __( 'Slider items', 'really-simple-slider' ), array($this , 'slider_items_meta_box' ), 'slider', 'normal', 'default' );
+		add_meta_box( 'slider-shortcode', __( 'Shortcode', 'really-simple-slider' ), array( $this , 'slider_shortcode_meta_box' ), 'slider', 'side', 'default' );
+		add_meta_box( 'slider-options', __( 'Options', 'really-simple-slider' ), array( $this , 'slider_options_meta_box' ), 'slider', 'side', 'default' );
+		add_meta_box( 'slider-items', __( 'Slider items', 'really-simple-slider' ), array( $this , 'slider_items_meta_box' ), 'slider', 'normal', 'default' );
 	}
 
 
@@ -173,7 +173,7 @@ class Really_Simple_Slider {
 	* slider_shortcode_meta_box
 	*/
   
-	function slider_shortcode_meta_box(){
+	function slider_shortcode_meta_box() {
 		global $post;
 		$shortcode = '[slider id="' . $post->ID . '"]';
 	?>
@@ -192,17 +192,23 @@ class Really_Simple_Slider {
 	* slider_options_meta_box
 	*/
   
-	function slider_options_meta_box(){
+	function slider_options_meta_box() {
 		global $post;
 		$slider_fx = ( get_post_meta( $post->ID, '_rss_slider_fx', true ) ) ? get_post_meta( $post->ID, '_rss_slider_fx', true ) : 'fade';
+		$slider_auto = ( get_post_meta( $post->ID, '_rss_slider_auto', true ) ) ? get_post_meta( $post->ID, '_rss_slider_auto', true ) : '';
 	?>
 		<div class="form-wrap">
 		<div class="form-field">
 		<label for="slider_fx"><?php _e( 'Effect:', 'really-simple-slider' ); ?></label>
 		<select id="slider_fx" name="slider_fx">
-		<option value="fade" <?php echo ( ($slider_fx == 'fade' ) || (empty($archive_display)) ) ? 'selected="selected"' : '' ?>><?php _e( 'Fade', 'really-simple-slider' ); ?></option>
-		<option value="scrollHorz" <?php echo ($slider_fx == 'scrollHorz' ) ? 'selected="selected"' : '' ?>><?php _e( 'Slide', 'really-simple-slider' ); ?></option>
+		<option value="fade" <?php echo ( ( $slider_fx == 'fade' ) || ( empty( $archive_display ) ) ) ? 'selected="selected"' : '' ?>><?php _e( 'Fade', 'really-simple-slider' ); ?></option>
+		<option value="scrollHorz" <?php echo ( $slider_fx == 'scrollHorz' ) ? 'selected="selected"' : '' ?>><?php _e( 'Slide', 'really-simple-slider' ); ?></option>
 		</select>
+		</div>
+		<div class="form-field">
+		<label for="slider_auto"><?php _e( 'Automatic Playback:', 'really-simple-slider' ); ?>
+		<input type="checkbox" id="slider_auto" name="slider_auto" value="true" <?php checked( $slider_auto, 'true' ); ?> />
+		</label>
 		</div>
 		</div>
 	<?php
@@ -213,7 +219,7 @@ class Really_Simple_Slider {
 	* slider_items_meta_box
 	*/
   
-	function slider_items_meta_box(){
+	function slider_items_meta_box() {
 		global $post;
 		
 	?>
@@ -277,32 +283,35 @@ class Really_Simple_Slider {
 	* save_slider
 	*/
  
-	function save_slider($post_id){
+	function save_slider( $post_id ) {
 		// verify nonce
-		if ( isset($_POST['metabox_nonce']) && !wp_verify_nonce( $_POST['metabox_nonce'], basename(__FILE__) )) {
+		if ( isset( $_POST['metabox_nonce'] ) && !wp_verify_nonce( $_POST['metabox_nonce'], basename( __FILE__ ) ) ) {
 			return $post_id;
 		}
 	
 		// is autosave?
-		if (defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return $post_id;
 		}
 
 		// check permissions
-		if (isset($_POST['post_type'])) {
-			if ( 'page' == $_POST['post_type']) {
-				if (!current_user_can( 'edit_page', $post_id)) {
+		if ( isset( $_POST['post_type'] ) ) {
+			if ( 'page' == $_POST['post_type'] ) {
+				if ( !current_user_can( 'edit_page', $post_id ) ) {
 					return $post_id;
 				}
-			} elseif (!current_user_can( 'edit_post', $post_id)) {
+			} elseif ( !current_user_can( 'edit_post', $post_id ) ) {
 				return $post_id;
 			}
 		}
 
-		if ( isset($_POST['post_type']) && ( 'slider' == $_POST['post_type']) ) {
+		if ( isset( $_POST['post_type'] ) && ( 'slider' == $_POST['post_type'] ) ) {
 			
 			$slider_fx = isset( $_POST['slider_fx'] ) ? sanitize_text_field( $_POST['slider_fx'] ) : 'fade';
 			update_post_meta( $post_id, '_rss_slider_fx', $slider_fx );
+
+			$slider_auto = isset( $_POST['slider_auto'] ) ? $_POST['slider_auto'] : '';
+			update_post_meta( $post_id, '_rss_slider_auto', $slider_auto );
 
 			$attachment_ids = isset( $_POST['slider_items'] ) ? array_filter( explode( ',', sanitize_text_field( $_POST['slider_items'] ) ) ) : array();
 			update_post_meta( $post_id, '_rss_slider_items', implode( ',', $attachment_ids ) );
@@ -315,8 +324,8 @@ class Really_Simple_Slider {
 	/**
 	 * shortcode_slider
 	 */
-	function shortcode_slider($atts) {
-		$html = $this->shortcode_atts($atts);
+	function shortcode_slider( $attr ) {
+		$html = $this->shortcode_atts( $attr );
 		return $html;
 	}
 
@@ -324,11 +333,15 @@ class Really_Simple_Slider {
 	/**
 	 * shortcode_atts
 	 */
-	function shortcode_atts($atts) {
-		extract(shortcode_atts(array(
+	function shortcode_atts( $attr ) {
+		$atts = shortcode_atts( array(
 			'id' => ''
-		), $atts));
-		$html = $this->slider_markup($id);
+		), $attr, 'slider' );
+		$id = $atts['id'];
+		$html = '';
+		if ( 'slider' === get_post_type( $id ) ) {
+			$html = $this->slider_markup( $id );
+		}
 		return $html;
 	}
 
@@ -336,8 +349,11 @@ class Really_Simple_Slider {
 	/**
 	 * show_slider
 	 */
-	function show_slider($id) {
-		$html = $this->slider_markup($id);
+	function show_slider( $id ) {
+		$html = '';
+		if ( 'slider' === get_post_type( $id ) ) {
+			$html = $this->slider_markup( $id );
+		}
 		echo $html;
 	}
 	
@@ -345,8 +361,9 @@ class Really_Simple_Slider {
 	/**
 	 * slider_markup
 	 */
-	function slider_markup($id) {
+	function slider_markup( $id ) {
 		$slider_fx = ( get_post_meta( $id, '_rss_slider_fx', true ) ) ? get_post_meta( $id, '_rss_slider_fx', true ) : 'fade';
+		$slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? '8000' : '0';
 		$slider_items = get_post_meta( $id, '_rss_slider_items', true );
 		$attachments = array_filter( explode( ',', $slider_items ) );
 		$html = '';
@@ -359,7 +376,7 @@ class Really_Simple_Slider {
 							$("#slider-' . esc_js( $id ) . '").cycle({
 								fx: "' . esc_js( $slider_fx ) . '",
 								speed: 500,
-								timeout: 8000,
+								timeout: ' . esc_js( $slider_auto ) . ',
 								slides: ".slide",
 								autoHeight: "calc",
 								loader: "wait"
@@ -370,13 +387,13 @@ class Really_Simple_Slider {
 					 <div id="slider-' . $id . '" class="slider featured">';
 			foreach ( $attachments as $attachment_id ) {
 				if ( wp_attachment_is_image( $attachment_id ) ) {
-		            $image_attributes = wp_get_attachment_image_src($attachment_id, 'full' );
+		            $image_attributes = wp_get_attachment_image_src( $attachment_id, 'full' );
 					if ( isset( $_wp_additional_image_sizes ) && count( $_wp_additional_image_sizes ) && in_array( $size, array_keys( $_wp_additional_image_sizes ) ) ) {
 						$width = $_wp_additional_image_sizes[$size]['width'];
 						$height = $_wp_additional_image_sizes[$size]['height'];
 					} else {
-						$width = get_option($size . '_size_w' ) ? get_option($size . '_size_w' ) : $image_attributes[1];
-						$height = get_option($size . '_size_h' ) ? get_option($size . '_size_h' ) : $image_attributes[2];
+						$width = get_option( $size . '_size_w' ) ? get_option( $size . '_size_w' ) : $image_attributes[1];
+						$height = get_option( $size . '_size_h' ) ? get_option( $size . '_size_h' ) : $image_attributes[2];
 					} 
 					$html .= '<div class="slide">';
 					$html .= '<img src="' . $image_attributes[0] . '" width="' . $width . 
@@ -414,7 +431,7 @@ class Really_Simple_Slider {
 				}
 			</style>
 			
-			<a href="#TB_inline?width=480&amp;inlineId=select-slider" class="button thickbox insert-slider" data-editor="<?php echo esc_attr($editor_id); ?>" title="<?php _e( 'Add a Slider', 'really-simple-slider' ); ?>">
+			<a href="#TB_inline?width=480&amp;inlineId=select-slider" class="button thickbox insert-slider" data-editor="<?php echo esc_attr( $editor_id ); ?>" title="<?php _e( 'Add a Slider', 'really-simple-slider' ); ?>">
 				<span class="wp-media-buttons-icon dashicons dashicons-format-image"></span><?php _e( 'Add Slider', 'really-simple-slider' ); ?>
 			</a>
 		<?php
@@ -427,8 +444,7 @@ class Really_Simple_Slider {
 	 *
 	 * @return void
 	 */
-	public function print_thickbox()
-	{
+	public function print_thickbox() {
 		?>
 			<style type="text/css">
 				#TB_window .section {
@@ -446,8 +462,8 @@ class Really_Simple_Slider {
 					var id = jQuery( '#slider' ).val();
 
 					// Display alert and bail if no slideshow was selected
-					if ( '-1' === id) {
-						return alert("<?php _e( 'Please select a Slider', 'really-simple-slider' ); ?>");
+					if ( '-1' === id ) {
+						return alert( "<?php _e( 'Please select a Slider', 'really-simple-slider' ); ?>" );
 					}
 
 					// Send shortcode to editor
@@ -475,10 +491,10 @@ class Really_Simple_Slider {
 								'orderby'     => 'ID',
 								'order'		  => 'DESC'
 							);
-							$sliders = get_posts($args);
+							$sliders = get_posts( $args );
 						?>
-						<?php foreach ($sliders as $slider) : ?>
-							<option value="<?php echo esc_attr($slider->ID); ?>"><?php echo esc_html(sprintf("%s (ID #%d)", $slider->post_title, $slider->ID)); ?></option>
+						<?php foreach ( $sliders as $slider ) : ?>
+							<option value="<?php echo esc_attr( $slider->ID ); ?>"><?php echo esc_html( sprintf( "%s ( ID #%d )", $slider->post_title, $slider->ID)); ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>
@@ -496,10 +512,10 @@ class Really_Simple_Slider {
 	* slider_columns
 	*/
 
-	function slider_columns($columns){
+	function slider_columns( $columns ) {
 		$new = array();
-		foreach($columns as $key => $value) {
-			if ($key == 'date' ) {
+		foreach( $columns as $key => $value ) {
+			if ( $key == 'date' ) {
 				// Put the Shortcode column before the Date column
 				$new['shortcode'] = __( 'Shortcode', 'really-simple-slider' );
 			}
@@ -513,8 +529,8 @@ class Really_Simple_Slider {
 	* slider_custom_column
 	*/
 
-	function slider_custom_column($column, $post_id) {
-		switch ($column) {
+	function slider_custom_column( $column, $post_id ) {
+		switch ( $column ) {
 			case 'shortcode':
 				$shortcode = sprintf( esc_html( "[slider id=\"%d\"]" ), $post_id );
 				echo $shortcode;
