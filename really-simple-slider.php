@@ -44,7 +44,7 @@ class Really_Simple_Slider {
      */
     public function plugin_setup() {
 
-          $this->includes();
+        $this->includes();
 
         add_action( 'init', array( $this, 'load_language' ) );
         add_action( 'init', array( $this, 'register_post_type' ) );
