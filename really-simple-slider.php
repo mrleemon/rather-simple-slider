@@ -49,7 +49,6 @@ class Really_Simple_Slider {
         add_action( 'init', array( $this, 'load_language' ) );
         add_action( 'init', array( $this, 'register_post_type' ) );
 
-        add_action( 'init', array( $this, 'init' ) );
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
         add_action( 'save_post_slider', array( $this, 'save_slider' ) );
