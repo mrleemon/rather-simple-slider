@@ -387,17 +387,8 @@ class Really_Simple_Slider {
                      <div id="slider-' . $id . '" class="slider featured">';
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
-                    $image_attributes = wp_get_attachment_image_src( $attachment_id, 'full' );
-                    if ( isset( $_wp_additional_image_sizes ) && count( $_wp_additional_image_sizes ) && in_array( $size, array_keys( $_wp_additional_image_sizes ) ) ) {
-                        $width = $_wp_additional_image_sizes[$size]['width'];
-                        $height = $_wp_additional_image_sizes[$size]['height'];
-                    } else {
-                        $width = get_option( $size . '_size_w' ) ? get_option( $size . '_size_w' ) : $image_attributes[1];
-                        $height = get_option( $size . '_size_h' ) ? get_option( $size . '_size_h' ) : $image_attributes[2];
-                    } 
                     $html .= '<div class="slide">';
-                    $html .= '<img src="' . $image_attributes[0] . '" width="' . $width . 
-                            '" height="' . $height . '" alt="" />';
+                    $html .= wp_get_attachment_image( $attachment_id, 'full' );
                     $html .= '</div>';
                 }
             }
