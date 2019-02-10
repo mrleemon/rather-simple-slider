@@ -99,10 +99,11 @@ class Really_Simple_Slider {
      */
     function enqueue_scripts() {
         // enqueue styles
+        wp_enqueue_style( 'slick-css', plugins_url( '/css/slick.css', __FILE__ ) );
         wp_enqueue_style( 'really-simple-slider-css', plugins_url( '/style.css', __FILE__ ), array( 'dashicons' ) );
         // enqueue scripts
-        wp_enqueue_script( 'cycle2', plugins_url( '/js/jquery.cycle2.min.js', __FILE__ ), array( 'jquery' ), '1.0' );
-        wp_enqueue_script( 'really-simple-slider-frontend', plugins_url( '/js/frontend.js', __FILE__ ), array( 'jquery' ), '1.0' );
+        wp_enqueue_script( 'slick', plugins_url( '/js/slick.min.js', __FILE__ ), array( 'jquery' ), false );
+        wp_enqueue_script( 'really-simple-slider-frontend', plugins_url( '/js/frontend.js', __FILE__ ), array( 'jquery' ), false );
     }
 
 
@@ -371,19 +372,21 @@ class Really_Simple_Slider {
             $html = '<!-- Begin slider markup -->
             
                     <script type="text/javascript">
-                        jQuery( function( $ ) {
-                            $("#slider-' . esc_js( $id ) . '").cycle({
-                                fx: "' . esc_js( $slider_fx ) . '",
-                                speed: 500,
-                                timeout: ' . esc_js( $slider_auto ) . ',
-                                slides: ".slide",
-                                autoHeight: "calc",
-                                loader: "wait"
-                            });
-                        });
+                    jQuery( document ).ready( function( $ ) {
+                        $( "#slider-' . esc_js( $id ) . '" ).slick( {
+                            fade: true,
+                            autoplay: ' . esc_js( $slider_auto ) . ',
+                            speed: 500,
+                            adaptiveHeight: true,
+                            appendArrows: false,
+                            pauseOnFocus: false,
+                            cssEase: "linear",
+                            lazyLoad: "anticipated"
+                        } );
+                    } );
                     </script>
-                    
-                     <div id="slider-' . $id . '" class="slider featured">';
+            
+                    <div id="slider-' . $id . '" class="slider featured">';
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
                     $html .= '<div class="slide">';
