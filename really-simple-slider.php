@@ -381,7 +381,8 @@ class Really_Simple_Slider {
                             appendArrows: false,
                             pauseOnFocus: false,
                             cssEase: "linear",
-                            lazyLoad: "anticipated"
+                            lazyLoad: "anticipated",
+                            nextArrow: $( "#slider-' . esc_js( $id ) . ' .slide" )
                         } );
                     } );
                     </script>
