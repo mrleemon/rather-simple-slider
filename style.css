@@ -1,3 +1,7 @@
+.slider .image_button {
+    display: none;
+}
+
 .slider .slide {
     cursor: pointer;
 }
