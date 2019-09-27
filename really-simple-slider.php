@@ -417,13 +417,38 @@ class Really_Simple_Slider {
                             lazyLoad: "anticipated",
                             nextArrow: $( "#slider-' . esc_js( $id ) . ' .slide" )
                         } );
+
+                        $( ".text_button" ).on( "click", function() {		   
+                            $( ".slider-text" ).show();	
+                            $( ".slider-items" ).hide(); 
+                            $( this ).hide();
+                            $( ".image_button" ).show();       
+                        } );
+
+                        $( ".image_button" ).on( "click", function() { 
+                            $( ".slider-text" ).hide();	
+                            $( ".slider-items" ).show();	
+                            $( this ).hide(); 
+                            $( ".text_button" ).show();                  
+                        } );
+
                     } );
                     </script>
             
                     <div id="slider-' . esc_attr( $id ) . '" class="slider featured">';
 
             if ( $slider_text_position === 'top' ) {
-                $html .= '<div class="slider-content">
+                $html .= '<div class="slider-text">
+                        ' . $slider_text . '
+                        </div>';
+            }
+
+            if ( $slider_text_position === 'hidden' ) {
+                $html .= '<div id="slider-switch">
+                            <span class="text_button">' . __( 'text', 'really-simple-slider' ) . '</span>
+                            <span class="image_button">' . __( 'images', 'really-simple-slider' ) . '</span>
+                            </div>
+                            <div class="slider-text">
                         ' . $slider_text . '
                         </div>';
             }
@@ -441,7 +466,7 @@ class Really_Simple_Slider {
             $html .= '</div>';
 
             if ( $slider_text_position === 'bottom' ) {
-                $html .= '<div class="slider-content">
+                $html .= '<div class="slider-text">
                         ' . $slider_text . '
                         </div>';
             }

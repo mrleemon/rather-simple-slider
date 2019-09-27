@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Really Simple Slider\n"
-"POT-Creation-Date: 2019-09-27 21:36+0200\n"
-"PO-Revision-Date: 2019-09-27 21:37+0200\n"
+"POT-Creation-Date: 2019-09-27 23:36+0200\n"
+"PO-Revision-Date: 2019-09-27 23:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -56,7 +56,7 @@ msgstr "No s'han trobat sliders"
 msgid "No Sliders found in Trash"
 msgstr "No s'han trobat sliders"
 
-#: really-simple-slider.php:184 really-simple-slider.php:552
+#: really-simple-slider.php:184 really-simple-slider.php:590
 msgid "Shortcode"
 msgstr "Shortcode"
 
@@ -79,83 +79,91 @@ msgstr ""
 "Copia i enganxa aquest codi quan editis una entrada, una pàgina o altre "
 "contingut."
 
-#: really-simple-slider.php:220
+#: really-simple-slider.php:221
 msgid "Effect:"
 msgstr "Efecte:"
 
-#: really-simple-slider.php:222
+#: really-simple-slider.php:223
 msgid "Fade"
 msgstr "Fade"
 
-#: really-simple-slider.php:223
+#: really-simple-slider.php:224
 msgid "Slide"
 msgstr "Desplaçament"
 
-#: really-simple-slider.php:227
+#: really-simple-slider.php:228
 msgid "Text Position:"
 msgstr "Posició del text:"
 
-#: really-simple-slider.php:229
+#: really-simple-slider.php:230
 msgid "Top"
 msgstr "A dalt"
 
-#: really-simple-slider.php:230
+#: really-simple-slider.php:231
 msgid "Bottom"
 msgstr "A baix"
 
-#: really-simple-slider.php:231
+#: really-simple-slider.php:232
 msgid "Hidden"
 msgstr "Ocult"
 
-#: really-simple-slider.php:235
+#: really-simple-slider.php:236
 msgid "Automatic Playback:"
 msgstr "Reproducció automàtica:"
 
-#: really-simple-slider.php:280
+#: really-simple-slider.php:281
 msgid "Delete item"
 msgstr "Eliminar element"
 
-#: really-simple-slider.php:280
+#: really-simple-slider.php:281
 msgid "Delete"
 msgstr "Eliminar"
 
-#: really-simple-slider.php:300
+#: really-simple-slider.php:301
 msgid "Add items to slider"
 msgstr "Afegir elements al slider"
 
-#: really-simple-slider.php:300
+#: really-simple-slider.php:301
 msgid "Add slider items"
 msgstr "Afegir elements al slider"
 
-#: really-simple-slider.php:466
+#: really-simple-slider.php:448
+msgid "text"
+msgstr "text"
+
+#: really-simple-slider.php:449
+msgid "images"
+msgstr "imatges"
+
+#: really-simple-slider.php:504
 msgid "Add a Slider"
 msgstr "Afegir un slider"
 
-#: really-simple-slider.php:467
+#: really-simple-slider.php:505
 msgid "Add Slider"
 msgstr "Afegir slider"
 
-#: really-simple-slider.php:498
+#: really-simple-slider.php:536
 msgid "Please select a Slider"
 msgstr "Si us plau, selecciona un slider"
 
-#: really-simple-slider.php:512
+#: really-simple-slider.php:550
 msgid "Add a slider"
 msgstr "Afegir un slider"
 
-#: really-simple-slider.php:513
+#: really-simple-slider.php:551
 msgid "Select a slider to insert from the dropdown below:"
 msgstr "Selecciona un slider a inserir del següent desplegable:"
 
-#: really-simple-slider.php:518
+#: really-simple-slider.php:556
 msgid "Select a slider"
 msgstr "Seleccionar un slider"
 
-#: really-simple-slider.php:535
+#: really-simple-slider.php:573
 msgid "Insert Slider"
 msgstr "Inserir slider"
 
-#: really-simple-slider.php:536
+#: really-simple-slider.php:574
 msgid "Close"
 msgstr "Tancar"
 
