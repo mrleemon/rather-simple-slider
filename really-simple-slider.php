@@ -117,8 +117,7 @@ class Really_Simple_Slider {
         wp_enqueue_script( 'gallery-script', plugins_url( '/js/slider-gallery.js', __FILE__ ), array( 'jquery' ), '1.0', true );
     }
 
-    
-    
+        
     /*
      * register_post_type
      *
@@ -214,14 +213,23 @@ class Really_Simple_Slider {
     function slider_options_meta_box() {
         global $post;
         $slider_fx = ( get_post_meta( $post->ID, '_rss_slider_fx', true ) ) ? get_post_meta( $post->ID, '_rss_slider_fx', true ) : 'fade';
+        $slider_text_position = ( get_post_meta( $post->ID, '_rss_slider_text_position', true ) ) ? get_post_meta( $post->ID, '_rss_slider_text_position', true ) : '';
         $slider_auto = ( get_post_meta( $post->ID, '_rss_slider_auto', true ) ) ? get_post_meta( $post->ID, '_rss_slider_auto', true ) : '';
     ?>
         <div class="form-wrap">
         <div class="form-field">
         <label for="slider_fx"><?php _e( 'Effect:', 'really-simple-slider' ); ?></label>
         <select id="slider_fx" name="slider_fx">
-        <option value="fade" <?php echo ( ( $slider_fx == 'fade' ) || ( empty( $archive_display ) ) ) ? 'selected="selected"' : '' ?>><?php _e( 'Fade', 'really-simple-slider' ); ?></option>
+        <option value="fade" <?php echo ( $slider_fx == 'fade' || empty( $slider_fx ) ) ? 'selected="selected"' : '' ?>><?php _e( 'Fade', 'really-simple-slider' ); ?></option>
         <option value="scrollHorz" <?php echo ( $slider_fx == 'scrollHorz' ) ? 'selected="selected"' : '' ?>><?php _e( 'Slide', 'really-simple-slider' ); ?></option>
+        </select>
+        </div>
+        <div class="form-field">
+        <label for="slider_text_position"><?php _e( 'Text Position:', 'really-simple-slider' ); ?></label>
+        <select id="slider_text_position" name="slider_text_position">
+        <option value="top" <?php echo ( $slider_text_position == 'top' || empty( $slider_text_position ) ) ? 'selected="selected"' : '' ?>><?php _e( 'Top', 'really-simple-slider' ); ?></option>
+        <option value="bottom" <?php echo ( $slider_text_position == 'bottom' ) ? 'selected="selected"' : '' ?>><?php _e( 'Bottom', 'really-simple-slider' ); ?></option>
+        <option value="hidden" <?php echo ( $slider_text_position == 'hidden' ) ? 'selected="selected"' : '' ?>><?php _e( 'Hidden', 'really-simple-slider' ); ?></option>
         </select>
         </div>
         <div class="form-field">
@@ -240,10 +248,8 @@ class Really_Simple_Slider {
   
     function slider_items_meta_box() {
         global $post;
-        
     ?>
-
-            <div id="slider_images_container">
+        <div id="slider_images_container">
             <ul class="slider_images">
                 <?php
                     if ( metadata_exists( 'post', $post->ID, '_rss_slider_items' ) ) {
@@ -329,6 +335,9 @@ class Really_Simple_Slider {
             $slider_fx = isset( $_POST['slider_fx'] ) ? sanitize_text_field( $_POST['slider_fx'] ) : 'fade';
             update_post_meta( $post_id, '_rss_slider_fx', $slider_fx );
 
+            $slider_text_position = isset( $_POST['slider_text_position'] ) ? sanitize_text_field( $_POST['slider_text_position'] ) : 'top';
+            update_post_meta( $post_id, '_rss_slider_text_position', $slider_text_position );
+
             $slider_auto = isset( $_POST['slider_auto'] ) ? $_POST['slider_auto'] : '';
             update_post_meta( $post_id, '_rss_slider_auto', $slider_auto );
 
@@ -382,8 +391,9 @@ class Really_Simple_Slider {
      */
     function slider_markup( $id ) {
         $slider = get_post( $id );
-        $slider_content = $slider->post_content;
+        $slider_text = $slider->post_content;
         $slider_fx = ( get_post_meta( $id, '_rss_slider_fx', true ) ) ? get_post_meta( $id, '_rss_slider_fx', true ) : 'fade';
+        $slider_text_position = get_post_meta( $id, '_rss_slider_text_position', true );
         $slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? '8000' : '0';
         $slider_items = get_post_meta( $id, '_rss_slider_items', true );
         
@@ -410,8 +420,15 @@ class Really_Simple_Slider {
                     } );
                     </script>
             
-                    <div id="slider-' . esc_attr( $id ) . '" class="slider featured">
-                    <div class="slider-items">';
+                    <div id="slider-' . esc_attr( $id ) . '" class="slider featured">';
+
+            if ( $slider_text_position === 'top' ) {
+                $html .= '<div class="slider-content">
+                        ' . $slider_text . '
+                        </div>';
+            }
+
+            $html .= '<div class="slider-items">';
 
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
@@ -421,13 +438,15 @@ class Really_Simple_Slider {
                 }
             }
 
-            $html .= '</div>
-                        
-                        <div class="slider-content">
-                        ' . $slider_content . '
-                        </div>
+            $html .= '</div>';
 
-                      </div>
+            if ( $slider_text_position === 'bottom' ) {
+                $html .= '<div class="slider-content">
+                        ' . $slider_text . '
+                        </div>';
+            }
+
+            $html .= '</div>
                       
                       <!-- End slider markup -->';
     
