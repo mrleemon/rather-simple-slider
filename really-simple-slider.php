@@ -386,7 +386,7 @@ class Really_Simple_Slider {
                     } );
                     </script>
             
-                    <div id="slider-' . $id . '" class="slider featured">';
+                    <div id="slider-' . esc_attr( $id ) . '" class="slider featured">';
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
                     $html .= '<div class="slide">';
@@ -482,7 +482,7 @@ class Really_Simple_Slider {
                                 'post_type'   => 'slider',
                                 'numberposts' => -1,
                                 'orderby'     => 'ID',
-                                'order'          => 'DESC'
+                                'order'       => 'DESC'
                             );
                             $sliders = get_posts( $args );
                         ?>
