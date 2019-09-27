@@ -53,7 +53,8 @@ class Really_Simple_Slider {
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
         add_action( 'save_post_slider', array( $this, 'save_slider' ) );
         add_action( 'media_buttons', array( $this, 'display_button' ) );
-        
+        add_filter( 'wp_editor_settings', array( $this, 'slider_editor_settings' ) );
+
         add_action( 'show_slider', array($this, 'show_slider' ) );
         
         // Columns
@@ -148,7 +149,7 @@ class Really_Simple_Slider {
             'show_ui' => true,
             'menu_position' => 5,
             'menu_icon' => 'dashicons-images-alt2',
-            'supports' => array( 'title' ), 
+            'supports' => array( 'title', 'editor' ), 
             'labels' => $labels,
             'register_meta_box_cb' => array( $this , 'add_slider_meta_boxes' )
         );
@@ -157,6 +158,24 @@ class Really_Simple_Slider {
         
     }
 
+    /*
+    * Removes media buttons from slider post type.
+    */
+    function slider_editor_settings( $settings ) {
+        $current_screen = get_current_screen();
+
+        // Post types for which the media buttons should be removed.
+        $post_types = array( 'slider' );
+
+        // Bail out if media buttons should not be removed for the current post type.
+        if ( ! $current_screen || ! in_array( $current_screen->post_type, $post_types, true ) ) {
+            return $settings;
+        }
+
+        $settings['media_buttons'] = false;
+
+        return $settings;
+    }
 
     /*
     * add_slider_meta_boxes
@@ -362,18 +381,22 @@ class Really_Simple_Slider {
      * slider_markup
      */
     function slider_markup( $id ) {
+        $slider = get_post( $id );
+        $slider_content = $slider->post_content;
         $slider_fx = ( get_post_meta( $id, '_rss_slider_fx', true ) ) ? get_post_meta( $id, '_rss_slider_fx', true ) : 'fade';
         $slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? '8000' : '0';
         $slider_items = get_post_meta( $id, '_rss_slider_items', true );
-        $attachments = array_filter( explode( ',', $slider_items ) );
+        
         $html = '';
+
+        $attachments = array_filter( explode( ',', $slider_items ) );
         if ( ! empty( $attachments ) ) {
         
             $html = '<!-- Begin slider markup -->
             
                     <script type="text/javascript">
                     jQuery( document ).ready( function( $ ) {
-                        $( "#slider-' . esc_js( $id ) . '" ).slick( {
+                        $( "#slider-' . esc_js( $id ) . ' .slider-items" ).slick( {
                             fade: true,
                             autoplay: ' . esc_js( $slider_auto ) . ',
                             speed: 500,
@@ -387,7 +410,9 @@ class Really_Simple_Slider {
                     } );
                     </script>
             
-                    <div id="slider-' . esc_attr( $id ) . '" class="slider featured">';
+                    <div id="slider-' . esc_attr( $id ) . '" class="slider featured">
+                    <div class="slider-items">';
+
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
                     $html .= '<div class="slide">';
@@ -395,8 +420,15 @@ class Really_Simple_Slider {
                     $html .= '</div>';
                 }
             }
+
             $html .= '</div>
-            
+                        
+                        <div class="slider-content">
+                        ' . $slider_content . '
+                        </div>
+
+                      </div>
+                      
                       <!-- End slider markup -->';
     
         }
