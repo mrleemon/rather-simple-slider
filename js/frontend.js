@@ -1,8 +1,8 @@
 jQuery( document ).ready( function( $ ) {
     
-    $( '.slider .slider-items' ).each( function() {
+    $( '.slider' ).each( function() {
 
-        $( this ).slick();
+        $( '.slider-items', this ).slick();
 
         $( '.text-button' ).on( 'click', function() {		   
             $( '.slider-text' ).show();	
