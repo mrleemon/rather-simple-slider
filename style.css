@@ -1,6 +1,18 @@
+.slider .slider-switch {
+    margin-bottom: 10px;
+}
+
 .slider .image-button,
-.slider .slider-text {
+.slider .slider-text.text-position-hidden {
     display: none;
+}
+
+.slider .slider-text.text-position-top {
+    margin-bottom: 15px;
+}
+
+.slider .slider-text.text-position-bottom {
+    margin-top: 15px;
 }
 
 .slider .slide {

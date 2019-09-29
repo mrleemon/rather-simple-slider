@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Really Simple Slider\n"
-"POT-Creation-Date: 2019-09-27 23:36+0200\n"
-"PO-Revision-Date: 2019-09-27 23:36+0200\n"
+"POT-Creation-Date: 2019-09-29 18:19+0200\n"
+"PO-Revision-Date: 2019-09-29 18:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -56,7 +56,7 @@ msgstr "No se han encontrado sliders"
 msgid "No Sliders found in Trash"
 msgstr "No se han encontrado sliders"
 
-#: really-simple-slider.php:184 really-simple-slider.php:590
+#: really-simple-slider.php:184 really-simple-slider.php:572
 msgid "Shortcode"
 msgstr "Shortcode"
 
@@ -96,16 +96,16 @@ msgid "Text Position:"
 msgstr "Posición del texto:"
 
 #: really-simple-slider.php:230
-msgid "Top"
-msgstr "Arriba"
+msgid "Over the images"
+msgstr "Sobre las imágenes"
 
 #: really-simple-slider.php:231
-msgid "Bottom"
-msgstr "Abajo"
+msgid "Under the images"
+msgstr "Bajo las imágenes"
 
 #: really-simple-slider.php:232
-msgid "Hidden"
-msgstr "Oculto"
+msgid "Hidden behind the images"
+msgstr "Oculto detrás de las imágenes"
 
 #: really-simple-slider.php:236
 msgid "Automatic Playback:"
@@ -127,43 +127,43 @@ msgstr "Añadir elementos al slider"
 msgid "Add slider items"
 msgstr "Añadir elementos al slider"
 
-#: really-simple-slider.php:448
+#: really-simple-slider.php:423
 msgid "text"
 msgstr "texto"
 
-#: really-simple-slider.php:449
+#: really-simple-slider.php:424
 msgid "images"
 msgstr "imágenes"
 
-#: really-simple-slider.php:504
+#: really-simple-slider.php:486
 msgid "Add a Slider"
 msgstr "Añadir un slider"
 
-#: really-simple-slider.php:505
+#: really-simple-slider.php:487
 msgid "Add Slider"
 msgstr "Añadir slider"
 
-#: really-simple-slider.php:536
+#: really-simple-slider.php:518
 msgid "Please select a Slider"
 msgstr "Por favor, selecciona un slider"
 
-#: really-simple-slider.php:550
+#: really-simple-slider.php:532
 msgid "Add a slider"
 msgstr "Añadir un slider"
 
-#: really-simple-slider.php:551
+#: really-simple-slider.php:533
 msgid "Select a slider to insert from the dropdown below:"
 msgstr "Selecciona un slider a insertar del siguiente desplegable:"
 
-#: really-simple-slider.php:556
+#: really-simple-slider.php:538
 msgid "Select a slider"
 msgstr "Seleccionar un slider"
 
-#: really-simple-slider.php:573
+#: really-simple-slider.php:555
 msgid "Insert Slider"
 msgstr "Insertar slider"
 
-#: really-simple-slider.php:574
+#: really-simple-slider.php:556
 msgid "Close"
 msgstr "Cerrar"
 
@@ -182,6 +182,15 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://oscarciutat.com/code/"
 msgstr ""
+
+#~ msgid "Top"
+#~ msgstr "Arriba"
+
+#~ msgid "Bottom"
+#~ msgstr "Abajo"
+
+#~ msgid "Hidden"
+#~ msgstr "Oculto"
 
 #~ msgid "Add to slider"
 #~ msgstr "Añadir al slider"

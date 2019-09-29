@@ -227,9 +227,9 @@ class Really_Simple_Slider {
         <div class="form-field">
         <label for="slider_text_position"><?php _e( 'Text Position:', 'really-simple-slider' ); ?></label>
         <select id="slider_text_position" name="slider_text_position">
-        <option value="top" <?php echo ( $slider_text_position == 'top' || empty( $slider_text_position ) ) ? 'selected="selected"' : '' ?>><?php _e( 'Top', 'really-simple-slider' ); ?></option>
-        <option value="bottom" <?php echo ( $slider_text_position == 'bottom' ) ? 'selected="selected"' : '' ?>><?php _e( 'Bottom', 'really-simple-slider' ); ?></option>
-        <option value="hidden" <?php echo ( $slider_text_position == 'hidden' ) ? 'selected="selected"' : '' ?>><?php _e( 'Hidden', 'really-simple-slider' ); ?></option>
+        <option value="top" <?php echo ( $slider_text_position == 'top' || empty( $slider_text_position ) ) ? 'selected="selected"' : '' ?>><?php _e( 'Over the images', 'really-simple-slider' ); ?></option>
+        <option value="bottom" <?php echo ( $slider_text_position == 'bottom' ) ? 'selected="selected"' : '' ?>><?php _e( 'Under the images', 'really-simple-slider' ); ?></option>
+        <option value="hidden" <?php echo ( $slider_text_position == 'hidden' ) ? 'selected="selected"' : '' ?>><?php _e( 'Hidden behind the images', 'really-simple-slider' ); ?></option>
         </select>
         </div>
         <div class="form-field">
@@ -416,23 +416,24 @@ class Really_Simple_Slider {
 
             $html = '<!-- Begin slider markup -->
             
-                    <div id="slider-' . esc_attr( $id ) . '" class="slider featured">';
-
-            if ( $slider_text_position === 'top' ) {
-                $html .= '<div class="slider-text">
-                        ' . $slider_text . '
-                        </div>';
-            }
+                    <div id="slider-' . esc_attr( $id ) . '" class="slider">';
 
             if ( $slider_text_position === 'hidden' ) {
-                $html .= '<div id="slider-switch">
+                $html .= '<div class="slider-switch">
                             <span class="text-button">' . __( 'text', 'really-simple-slider' ) . '</span>
                             <span class="image-button">' . __( 'images', 'really-simple-slider' ) . '</span>
                             </div>
-                            <div class="slider-text">
+                            <div class="slider-text text-position-' . esc_attr( $slider_text_position ) . '">
                         ' . $slider_text . '
                         </div>';
             }
+
+            if ( $slider_text_position === 'top' ) {
+                $html .= '<div class="slider-text text-position-' . esc_attr( $slider_text_position ) . '">
+                        ' . $slider_text . '
+                        </div>';
+            }
+
 
             $html .= "<div class='slider-items' data-slick='" . json_encode( $attrs ) . "'>";
 
@@ -447,7 +448,7 @@ class Really_Simple_Slider {
             $html .= '</div>';
 
             if ( $slider_text_position === 'bottom' ) {
-                $html .= '<div class="slider-text">
+                $html .= '<div class="slider-text text-position-' . esc_attr( $slider_text_position ) . '">
                         ' . $slider_text . '
                         </div>';
             }

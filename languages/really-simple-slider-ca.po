@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Really Simple Slider\n"
-"POT-Creation-Date: 2019-09-27 23:36+0200\n"
-"PO-Revision-Date: 2019-09-27 23:36+0200\n"
+"POT-Creation-Date: 2019-09-29 18:19+0200\n"
+"PO-Revision-Date: 2019-09-29 18:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -56,7 +56,7 @@ msgstr "No s'han trobat sliders"
 msgid "No Sliders found in Trash"
 msgstr "No s'han trobat sliders"
 
-#: really-simple-slider.php:184 really-simple-slider.php:590
+#: really-simple-slider.php:184 really-simple-slider.php:572
 msgid "Shortcode"
 msgstr "Shortcode"
 
@@ -96,16 +96,16 @@ msgid "Text Position:"
 msgstr "Posició del text:"
 
 #: really-simple-slider.php:230
-msgid "Top"
-msgstr "A dalt"
+msgid "Over the images"
+msgstr "Sobre les imatges"
 
 #: really-simple-slider.php:231
-msgid "Bottom"
-msgstr "A baix"
+msgid "Under the images"
+msgstr "Sota les imatges"
 
 #: really-simple-slider.php:232
-msgid "Hidden"
-msgstr "Ocult"
+msgid "Hidden behind the images"
+msgstr "Ocult darrere de les imatges"
 
 #: really-simple-slider.php:236
 msgid "Automatic Playback:"
@@ -127,43 +127,43 @@ msgstr "Afegir elements al slider"
 msgid "Add slider items"
 msgstr "Afegir elements al slider"
 
-#: really-simple-slider.php:448
+#: really-simple-slider.php:423
 msgid "text"
 msgstr "text"
 
-#: really-simple-slider.php:449
+#: really-simple-slider.php:424
 msgid "images"
 msgstr "imatges"
 
-#: really-simple-slider.php:504
+#: really-simple-slider.php:486
 msgid "Add a Slider"
 msgstr "Afegir un slider"
 
-#: really-simple-slider.php:505
+#: really-simple-slider.php:487
 msgid "Add Slider"
 msgstr "Afegir slider"
 
-#: really-simple-slider.php:536
+#: really-simple-slider.php:518
 msgid "Please select a Slider"
 msgstr "Si us plau, selecciona un slider"
 
-#: really-simple-slider.php:550
+#: really-simple-slider.php:532
 msgid "Add a slider"
 msgstr "Afegir un slider"
 
-#: really-simple-slider.php:551
+#: really-simple-slider.php:533
 msgid "Select a slider to insert from the dropdown below:"
 msgstr "Selecciona un slider a inserir del següent desplegable:"
 
-#: really-simple-slider.php:556
+#: really-simple-slider.php:538
 msgid "Select a slider"
 msgstr "Seleccionar un slider"
 
-#: really-simple-slider.php:573
+#: really-simple-slider.php:555
 msgid "Insert Slider"
 msgstr "Inserir slider"
 
-#: really-simple-slider.php:574
+#: really-simple-slider.php:556
 msgid "Close"
 msgstr "Tancar"
 
@@ -182,12 +182,3 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://oscarciutat.com/code/"
 msgstr ""
-
-#~ msgid "Add to slider"
-#~ msgstr "Afegir al slider"
-
-#~ msgid "Caption"
-#~ msgstr "Pie"
-
-#~ msgid " Add Slider"
-#~ msgstr "Añadir slider"
