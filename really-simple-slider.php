@@ -104,7 +104,7 @@ class Really_Simple_Slider {
         wp_enqueue_style( 'really-simple-slider-css', plugins_url( '/style.css', __FILE__ ), array( 'dashicons' ) );
         // enqueue scripts
         wp_enqueue_script( 'slick', plugins_url( '/js/slick.min.js', __FILE__ ), array( 'jquery' ), false );
-        wp_enqueue_script( 'really-simple-slider-frontend', plugins_url( '/js/frontend.js', __FILE__ ), array( 'jquery' ), false );
+        wp_enqueue_script( 'really-simple-slider-frontend', plugins_url( '/js/frontend.js', __FILE__ ), array( 'jquery', 'slick' ), false );
     }
 
 
@@ -114,7 +114,7 @@ class Really_Simple_Slider {
     function admin_enqueue_scripts() {
         wp_enqueue_media();
         wp_enqueue_style( 'gallery-css', plugins_url( '/css/slider-gallery.css', __FILE__ ) );
-        wp_enqueue_script( 'gallery-script', plugins_url( '/js/slider-gallery.js', __FILE__ ), array( 'jquery' ), '1.0', true );
+        wp_enqueue_script( 'gallery-script', plugins_url( '/js/slider-gallery.js', __FILE__ ), array( 'jquery' ), false, true );
     }
 
         
@@ -394,7 +394,7 @@ class Really_Simple_Slider {
         $slider_text = $slider->post_content;
         $slider_fx = ( get_post_meta( $id, '_rss_slider_fx', true ) ) ? get_post_meta( $id, '_rss_slider_fx', true ) : 'fade';
         $slider_text_position = get_post_meta( $id, '_rss_slider_text_position', true );
-        $slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? '8000' : '0';
+        $slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? 8000 : 0;
         $slider_items = get_post_meta( $id, '_rss_slider_items', true );
         
         $html = '';
@@ -402,38 +402,19 @@ class Really_Simple_Slider {
         $attachments = array_filter( explode( ',', $slider_items ) );
         if ( ! empty( $attachments ) ) {
         
+            $attrs = array(
+                'fade' => ( $slider_fx === 'fade' ) ? true : false,
+                'autoplay' => $slider_auto,
+                'speed' => 500,
+                'adaptiveHeight' => true,
+                'appendArrows' => false,
+                'pauseOnFocus' => false,
+                'cssEase' => 'linear',
+                'lazyLoad' => 'anticipated',
+                'nextArrow' => sprintf( '#slider-%d .slide', $id ),
+            );
+
             $html = '<!-- Begin slider markup -->
-            
-                    <script type="text/javascript">
-                    jQuery( document ).ready( function( $ ) {
-                        $( "#slider-' . esc_js( $id ) . ' .slider-items" ).slick( {
-                            fade: true,
-                            autoplay: ' . esc_js( $slider_auto ) . ',
-                            speed: 500,
-                            adaptiveHeight: true,
-                            appendArrows: false,
-                            pauseOnFocus: false,
-                            cssEase: "linear",
-                            lazyLoad: "anticipated",
-                            nextArrow: $( "#slider-' . esc_js( $id ) . ' .slide" )
-                        } );
-
-                        $( ".text_button" ).on( "click", function() {		   
-                            $( ".slider-text" ).show();	
-                            $( ".slider-items" ).hide(); 
-                            $( this ).hide();
-                            $( ".image_button" ).show();       
-                        } );
-
-                        $( ".image_button" ).on( "click", function() { 
-                            $( ".slider-text" ).hide();	
-                            $( ".slider-items" ).show();	
-                            $( this ).hide(); 
-                            $( ".text_button" ).show();                  
-                        } );
-
-                    } );
-                    </script>
             
                     <div id="slider-' . esc_attr( $id ) . '" class="slider featured">';
 
@@ -453,7 +434,7 @@ class Really_Simple_Slider {
                         </div>';
             }
 
-            $html .= '<div class="slider-items">';
+            $html .= "<div class='slider-items' data-slick='" . json_encode( $attrs ) . "'>";
 
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
