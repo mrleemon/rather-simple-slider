@@ -393,7 +393,7 @@ class Really_Simple_Slider {
         $slider = get_post( $id );
         $slider_text = $slider->post_content;
         $slider_fx = ( get_post_meta( $id, '_rss_slider_fx', true ) ) ? get_post_meta( $id, '_rss_slider_fx', true ) : 'fade';
-        $slider_text_position = get_post_meta( $id, '_rss_slider_text_position', true );
+        $slider_text_position = ( get_post_meta( $id, '_rss_slider_text_position', true ) ) ? get_post_meta( $id, '_rss_slider_text_position', true ) : 'top';
         $slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? 8000 : 0;
         $slider_items = get_post_meta( $id, '_rss_slider_items', true );
         
