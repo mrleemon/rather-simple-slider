@@ -2,20 +2,22 @@ jQuery( document ).ready( function( $ ) {
     
     $( '.slider' ).each( function() {
 
-        $( '.slider-items', this ).slick();
+        var slider = $( this );
 
-        $( '.text-button' ).on( 'click', function() {		   
-            $( '.slider-text' ).show();	
-            $( '.slider-items' ).hide(); 
-            $( this ).hide();
-            $( '.image-button' ).show();       
+        $( '.slider-items', slider ).slick();
+
+        $( '.text-button', slider ).on( 'click', function() {		   
+            $( '.slider-text', slider ).show();	
+            $( '.slider-items', slider ).hide(); 
+            $( this, slider ).hide();
+            $( '.image-button', slider ).show();       
         } );
     
-        $( '.image-button' ).on( 'click', function() { 
-            $( '.slider-text' ).hide();	
-            $( '.slider-items' ).show();	
-            $( this ).hide(); 
-            $( '.text-button' ).show();                  
+        $( '.image-button', slider ).on( 'click', function() { 
+            $( '.slider-text', slider ).hide();	
+            $( '.slider-items', slider ).show();	
+            $( this, slider ).hide(); 
+            $( '.text-button', slider ).show();                  
         } );
     
     } );
