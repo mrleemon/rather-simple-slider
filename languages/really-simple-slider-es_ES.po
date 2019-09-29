@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Really Simple Slider\n"
 "POT-Creation-Date: 2019-09-29 18:19+0200\n"
-"PO-Revision-Date: 2019-09-29 18:19+0200\n"
+"PO-Revision-Date: 2019-09-29 18:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -182,21 +182,3 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://oscarciutat.com/code/"
 msgstr ""
-
-#~ msgid "Top"
-#~ msgstr "Arriba"
-
-#~ msgid "Bottom"
-#~ msgstr "Abajo"
-
-#~ msgid "Hidden"
-#~ msgstr "Oculto"
-
-#~ msgid "Add to slider"
-#~ msgstr "Añadir al slider"
-
-#~ msgid "Caption"
-#~ msgstr "Pie"
-
-#~ msgid " Add Slider"
-#~ msgstr "Añadir slider"
