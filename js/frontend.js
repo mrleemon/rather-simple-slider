@@ -1,19 +1,23 @@
 jQuery( document ).ready( function( $ ) {
     
-    $( '.slider .slider-items' ).slick();
+    $( '.slider .slider-items' ).each( function() {
 
-    $( '.text_button' ).on( 'click', function() {		   
-        $( '.slider-text' ).show();	
-        $( '.slider-items' ).hide(); 
-        $( this ).hide();
-        $( '.image_button' ).show();       
-    } );
+        $( this ).slick();
 
-    $( '.image_button' ).on( 'click', function() { 
-        $( '.slider-text' ).hide();	
-        $( '.slider-items' ).show();	
-        $( this ).hide(); 
-        $( '.text_button' ).show();                  
+        $( '.text-button' ).on( 'click', function() {		   
+            $( '.slider-text' ).show();	
+            $( '.slider-items' ).hide(); 
+            $( this ).hide();
+            $( '.image-button' ).show();       
+        } );
+    
+        $( '.image-button' ).on( 'click', function() { 
+            $( '.slider-text' ).hide();	
+            $( '.slider-items' ).show();	
+            $( this ).hide(); 
+            $( '.text-button' ).show();                  
+        } );
+    
     } );
 
 } );

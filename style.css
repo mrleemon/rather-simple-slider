@@ -1,4 +1,5 @@
-.slider .image_button {
+.slider .image-button,
+.slider .slider-text {
     display: none;
 }
 
