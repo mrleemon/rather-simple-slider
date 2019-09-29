@@ -416,20 +416,20 @@ class Really_Simple_Slider {
 
             $html = '<!-- Begin slider markup -->
             
-                    <div id="slider-' . esc_attr( $id ) . '" class="slider">';
+                    <div id="slider-' . esc_attr( $id ) . '" class="slider text-position-' . esc_attr( $slider_text_position ) . '">';
 
             if ( $slider_text_position === 'hidden' ) {
                 $html .= '<div class="slider-switch">
                             <span class="text-button">' . __( 'text', 'really-simple-slider' ) . '</span>
                             <span class="image-button">' . __( 'images', 'really-simple-slider' ) . '</span>
                             </div>
-                            <div class="slider-text text-position-' . esc_attr( $slider_text_position ) . '">
+                            <div class="slider-text">
                         ' . $slider_text . '
                         </div>';
             }
 
             if ( $slider_text_position === 'top' ) {
-                $html .= '<div class="slider-text text-position-' . esc_attr( $slider_text_position ) . '">
+                $html .= '<div class="slider-text">
                         ' . $slider_text . '
                         </div>';
             }
@@ -448,7 +448,7 @@ class Really_Simple_Slider {
             $html .= '</div>';
 
             if ( $slider_text_position === 'bottom' ) {
-                $html .= '<div class="slider-text text-position-' . esc_attr( $slider_text_position ) . '">
+                $html .= '<div class="slider-text">
                         ' . $slider_text . '
                         </div>';
             }

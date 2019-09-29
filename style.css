@@ -3,15 +3,15 @@
 }
 
 .slider .image-button,
-.slider .slider-text.text-position-hidden {
+.slider.text-position-hidden .slider-text {
     display: none;
 }
 
-.slider .slider-text.text-position-top {
+.slider.text-position-top .slider-text {
     margin-bottom: 15px;
 }
 
-.slider .slider-text.text-position-bottom {
+.slider.text-position-bottom .slider-text {
     margin-top: 15px;
 }
 
