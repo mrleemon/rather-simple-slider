@@ -213,23 +213,23 @@ class Really_Simple_Slider {
     function slider_options_meta_box() {
         global $post;
         $slider_fx = ( get_post_meta( $post->ID, '_rss_slider_fx', true ) ) ? get_post_meta( $post->ID, '_rss_slider_fx', true ) : 'fade';
-        $slider_text_position = ( get_post_meta( $post->ID, '_rss_slider_text_position', true ) ) ? get_post_meta( $post->ID, '_rss_slider_text_position', true ) : '';
+        $slider_text_position = ( get_post_meta( $post->ID, '_rss_slider_text_position', true ) ) ? get_post_meta( $post->ID, '_rss_slider_text_position', true ) : 'top';
         $slider_auto = ( get_post_meta( $post->ID, '_rss_slider_auto', true ) ) ? get_post_meta( $post->ID, '_rss_slider_auto', true ) : '';
     ?>
         <div class="form-wrap">
         <div class="form-field">
         <label for="slider_fx"><?php _e( 'Effect:', 'really-simple-slider' ); ?></label>
         <select id="slider_fx" name="slider_fx">
-        <option value="fade" <?php echo ( $slider_fx == 'fade' || empty( $slider_fx ) ) ? 'selected="selected"' : '' ?>><?php _e( 'Fade', 'really-simple-slider' ); ?></option>
-        <option value="scrollHorz" <?php echo ( $slider_fx == 'scrollHorz' ) ? 'selected="selected"' : '' ?>><?php _e( 'Slide', 'really-simple-slider' ); ?></option>
+        <option value="fade" <?php selected( $slider_fx, 'fade' ); ?>><?php _e( 'Fade', 'really-simple-slider' ); ?></option>
+        <option value="scrollHorz" <?php selected( $slider_fx, 'scrollHorz' ); ?>><?php _e( 'Slide', 'really-simple-slider' ); ?></option>
         </select>
         </div>
         <div class="form-field">
         <label for="slider_text_position"><?php _e( 'Text Position:', 'really-simple-slider' ); ?></label>
         <select id="slider_text_position" name="slider_text_position">
-        <option value="top" <?php echo ( $slider_text_position == 'top' || empty( $slider_text_position ) ) ? 'selected="selected"' : '' ?>><?php _e( 'Over the images', 'really-simple-slider' ); ?></option>
-        <option value="bottom" <?php echo ( $slider_text_position == 'bottom' ) ? 'selected="selected"' : '' ?>><?php _e( 'Under the images', 'really-simple-slider' ); ?></option>
-        <option value="hidden" <?php echo ( $slider_text_position == 'hidden' ) ? 'selected="selected"' : '' ?>><?php _e( 'Hidden behind the images', 'really-simple-slider' ); ?></option>
+        <option value="top" <?php selected( $slider_text_position, 'top' ); ?>><?php _e( 'Over the images', 'really-simple-slider' ); ?></option>
+        <option value="bottom" <?php selected( $slider_text_position, 'bottom' ); ?>><?php _e( 'Under the images', 'really-simple-slider' ); ?></option>
+        <option value="hidden" <?php selected( $slider_text_position, 'hidden' ); ?>><?php _e( 'Hidden behind the images', 'really-simple-slider' ); ?></option>
         </select>
         </div>
         <div class="form-field">
