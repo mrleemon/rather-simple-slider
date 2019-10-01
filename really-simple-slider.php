@@ -420,8 +420,8 @@ class Really_Simple_Slider {
 
             if ( $slider_text_position === 'hidden' ) {
                 $html .= '<div class="slider-switch">
-                            <span class="text-button">' . __( 'text', 'really-simple-slider' ) . '</span>
-                            <span class="image-button">' . __( 'images', 'really-simple-slider' ) . '</span>
+                            <span class="toggle-text">' . __( 'text', 'really-simple-slider' ) . '</span>
+                            <span class="toggle-images">' . __( 'images', 'really-simple-slider' ) . '</span>
                             </div>
                             <div class="slider-text">
                         ' . $slider_text . '
