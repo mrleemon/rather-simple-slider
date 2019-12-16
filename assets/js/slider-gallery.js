@@ -39,7 +39,6 @@ jQuery( function( $ ) {
 
             selection.map( function( attachment ) {
                 attachment = attachment.toJSON();
-                console.log(attachment);
                 if ( attachment.id ) {
                     if ( attachment.type == 'image' ) {
                         attachment_ids = attachment_ids ? attachment_ids + ',' + attachment.id : attachment.id;
