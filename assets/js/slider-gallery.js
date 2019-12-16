@@ -3,7 +3,7 @@ jQuery( function( $ ) {
     // slider gallery file uploads.
     var slider_gallery_frame;
     var $image_gallery_ids = $( '#slider_items' );
-    var $slider_images    = $( '#slider_images_container' ).find( 'ul.slider_images' );
+    var $slider_images = $( '#slider_images_container' ).find( 'ul.slider_images' );
 
     $( '.add_slider_images' ).on( 'click', 'a', function( event ) {
         var $el = $( this );
@@ -43,7 +43,7 @@ jQuery( function( $ ) {
                     if ( attachment.type == 'image' ) {
                         attachment_ids = attachment_ids ? attachment_ids + ',' + attachment.id : attachment.id;
                         var attachment_image = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
-                        $slider_images.append( '<li class="image" data-attachment_id="' + attachment.id + '"><img src="' + attachment_image + '" /><ul class="actions"><li><a href="#" class="delete" title="' + $el.data('delete') + '">' + $el.data('text') + '</a></li></ul></li>' );
+                        $slider_images.append( '<li class="image" data-attachment_id="' + attachment.id + '"><img src="' + attachment_image + '" /><ul class="actions"><li><a href="#" class="delete" title="' + $el.data( 'delete' ) + '">' + $el.data( 'text' ) + '</a></li></ul></li>' );
                     }
 
                 }
@@ -103,4 +103,5 @@ jQuery( function( $ ) {
 
         return false;
     });
+    
 });
