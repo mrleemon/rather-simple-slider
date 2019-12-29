@@ -444,7 +444,17 @@ class Really_Simple_Slider {
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
                     $html .= '<div class="slide">';
-                    $html .= wp_get_attachment_image( $attachment_id, 'full' );
+                    $oembed_url = get_post_meta( $attachment_id, '_rss_slider_oembed_url', true );
+                    if ( $oembed_url != '' ) {
+                        $oembed_width = (int) get_post_meta( $attachment_id, '_rss_slider_oembed_width', true );
+                        $oembed_height = (int) get_post_meta( $attachment_id, '_rss_slider_oembed_height', true );
+                        $oembed_width = !empty( $oembed_width ) ? $oembed_width : 800;
+                        $oembed_height = !empty( $oembed_height ) ? $oembed_height : 800;
+                        $html .= wp_oembed_get( $oembed_url, array( 'width' => $oembed_width, 'height' => $oembed_height ) );
+                    } else {
+                        $html .= wp_get_attachment_image( $attachment_id, 'full' );
+                    }
+                    
                     $html .= '</div>';
                 }
             }
