@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Really Simple Slider\n"
 "POT-Creation-Date: 2019-12-29 14:45+0100\n"
-"PO-Revision-Date: 2019-12-29 14:46+0100\n"
+"PO-Revision-Date: 2019-12-29 15:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -42,7 +42,7 @@ msgstr "Nuevo slider"
 
 #: really-simple-slider.php:139
 msgid "View Slider"
-msgstr "Ver slider"
+msgstr "Visualitza slider"
 
 #: really-simple-slider.php:140
 msgid "Search Sliders"
