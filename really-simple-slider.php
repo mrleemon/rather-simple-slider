@@ -61,6 +61,10 @@ class Really_Simple_Slider {
         add_filter( 'manage_slider_posts_columns', array( $this, 'slider_columns' ) );
         add_action( 'manage_slider_posts_custom_column',  array( $this, 'slider_custom_column' ), 5, 2 );
 
+        // Attachment fields
+        add_filter( 'attachment_fields_to_edit', array( $this, 'attachment_fields_to_edit' ), 10, 2 );
+        add_filter( 'attachment_fields_to_save', array( $this, 'attachment_fields_to_save' ), 10, 2 );
+
         // Enqueue the thickbox (required for button to work)
         add_action( 'admin_footer', array( $this, 'print_thickbox' ) );
         
@@ -588,6 +592,80 @@ class Really_Simple_Slider {
                 echo $shortcode;
                 break;
         }
+    }
+
+    /*
+    * attachment_fields_to_edit
+    */
+    function attachment_fields_to_edit( $form_fields, $post ) {
+        $form_fields['oembed-header']['tr'] = '
+            <tr>
+                <td colspan="2">
+                    <h2>' . __( 'Embed Media Item', 'really-simple-slider' ) . '</h2>
+                </td>
+            </tr>';
+        $form_fields['oembed-url'] = array(
+            'label' => __( 'URL' ),
+            'input' => 'html',
+            'html' => '<input class="text" id="attachments-' . $post->ID . '-oembed-url" name="attachments[' . $post->ID . '][oembed-url]" type="url"
+                        value="' . get_post_meta( $post->ID, '_rss_slider_oembed_url', true ) . '" />',
+            'helps' => __( 'If provided, this media item will be displayed instead of the image', 'really-simple-slider' )
+        );
+        $form_fields['oembed-width'] = array(
+            'label' => __( 'Width' ),
+            'input' => 'html',
+            'html' => '<input class="text" id="attachments-' . $post->ID . '-oembed-width" name="attachments[' . $post->ID . '][oembed-width]" type="number" min="1"
+                        value="' . get_post_meta( $post->ID, '_rss_slider_oembed_width', true ) .'" />'
+        );
+        $form_fields['oembed-height'] = array(
+            'label' => __( 'Height' ),
+            'input' => 'html',
+            'html' => '<input class="text" id="attachments-' . $post->ID . '-oembed-height" name="attachments[' . $post->ID . '][oembed-height]" type="number" min="1"
+                        value="' . get_post_meta( $post->ID, '_rss_slider_oembed_height', true ) .'" />'
+        );
+        return $form_fields;
+    }
+
+
+    /*
+    * attachment_fields_to_save
+    */
+    function attachment_fields_to_save( $post, $attachment ) {
+        if ( isset( $attachment['oembed-url'] ) ) {
+            $url = $attachment['oembed-url'];
+            //if ( preg_match( '/^((https?|ftp)://)?([a-z0-9+!*(),;?&=$_.-]+(:[a-z0-9+!*(),;?&=$_.-]+)?@)?([a-z0-9-.]*).([a-z]{2,3})(:[0-9]{2,5})?(/([a-z0-9+$_-].?)+)*/?(?[a-z+&$_.-][a-z0-9;:@&%=+/$_.-]*)?(#[a-z_.-][a-z0-9+$_.-]*)?/', $url ) ) {
+                update_post_meta( $post['ID'], '_rss_slider_oembed_url', $url );    
+            //} else {
+                //$post['errors']['oembed-url']['errors'][] = __( 'This is not a valid URL.' );
+            //}
+        }
+        if ( isset( $attachment['oembed-width'] ) ) {
+            $number = (int) $attachment['oembed-width'];
+            if ( $number <> 0 ) {
+                if ( $number < 0 ) {
+                    $number = 0;
+                } elseif ( $number > 800 ) {
+                    $number = 800;
+                }
+                update_post_meta( $post['ID'], '_rss_slider_oembed_width', $number );
+            } else {
+                delete_post_meta( $post['ID'], '_rss_slider_oembed_width');
+            }
+        }
+        if ( isset( $attachment['oembed-height'] ) ) {
+            $number = (int) $attachment['oembed-height'];
+            if ( $number <> 0 ) {
+                if ( $number < 0 ) {
+                    $number = 0;
+                } elseif ( $number > 800 ) {
+                    $number = 800;
+                }
+                update_post_meta( $post['ID'], '_rss_slider_oembed_height', $number );
+            } else {
+                delete_post_meta( $post['ID'], '_rss_slider_oembed_height' );
+            }
+        }
+        return $post;
     }
 
 }
