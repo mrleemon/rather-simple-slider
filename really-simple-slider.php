@@ -406,18 +406,6 @@ class Really_Simple_Slider {
         $attachments = array_filter( explode( ',', $slider_items ) );
         if ( ! empty( $attachments ) ) {
         
-            $attrs = array(
-                'fade' => ( $slider_fx === 'fade' ) ? true : false,
-                'autoplay' => $slider_auto,
-                'speed' => 500,
-                'adaptiveHeight' => true,
-                'appendArrows' => false,
-                'pauseOnFocus' => false,
-                'cssEase' => 'linear',
-                'lazyLoad' => 'anticipated',
-                'nextArrow' => sprintf( '#slider-%d .slide', $id ),
-            );
-
             $html = '<!-- Begin slider markup -->
             
                     <div id="slider-' . esc_attr( $id ) . '" class="slider text-position-' . esc_attr( $slider_text_position ) . '">';
@@ -438,8 +426,26 @@ class Really_Simple_Slider {
                         </div>';
             }
 
+            $attrs = array(
+                'fade' => ( $slider_fx === 'fade' ) ? true : false,
+                'autoplay' => $slider_auto,
+                'speed' => 500,
+                'adaptiveHeight' => true,
+                'appendArrows' => false,
+                'pauseOnFocus' => false,
+                'cssEase' => 'linear',
+                'lazyLoad' => 'anticipated',
+                'nextArrow' => sprintf( '#slider-%d .slide', $id ),
+            );
 
-            $html .= "<div class='slider-items' data-slick='" . json_encode( $attrs ) . "'>";
+            $html .= "<div class='slider-items'";
+            
+            if ( count( $attachments ) > 1 ) {
+                // Enable the slider only when there's more than one slide
+                $html .= " data-slick='" . json_encode( $attrs ) . "'";
+            }
+
+            $html .= ">";
 
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
