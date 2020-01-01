@@ -6,18 +6,18 @@ jQuery( document ).ready( function( $ ) {
 
         $( '.slider-items', slider ).slick();
 
-        $( '.text-button', slider ).on( 'click', function() {		   
+        $( '.toggle-text', slider ).on( 'click', function() {		   
             $( '.slider-text', slider ).show();	
             $( '.slider-items', slider ).hide(); 
             $( this, slider ).hide();
-            $( '.image-button', slider ).show();       
+            $( '.toggle-media', slider ).show();       
         } );
     
-        $( '.image-button', slider ).on( 'click', function() { 
+        $( '.toggle-media', slider ).on( 'click', function() { 
             $( '.slider-text', slider ).hide();	
             $( '.slider-items', slider ).show();	
             $( this, slider ).hide(); 
-            $( '.text-button', slider ).show();                  
+            $( '.toggle-text', slider ).show();                  
         } );
     
     } );
