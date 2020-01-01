@@ -443,6 +443,7 @@ class Really_Simple_Slider {
 
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
+                    $attachment = get_post( $attachment_id );
                     $html .= '<div class="slide">';
                     $oembed_url = get_post_meta( $attachment_id, '_rss_slider_oembed_url', true );
                     if ( $oembed_url != '' ) {
@@ -454,7 +455,8 @@ class Really_Simple_Slider {
                     } else {
                         $html .= wp_get_attachment_image( $attachment_id, 'full' );
                     }
-                    
+
+                    $html .= '<div class="slide-caption">' . $attachment->post_content . '</div>';
                     $html .= '</div>';
                 }
             }
