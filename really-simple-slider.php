@@ -218,6 +218,7 @@ class Really_Simple_Slider {
         global $post;
         $slider_fx = ( get_post_meta( $post->ID, '_rss_slider_fx', true ) ) ? get_post_meta( $post->ID, '_rss_slider_fx', true ) : 'fade';
         $slider_text_position = ( get_post_meta( $post->ID, '_rss_slider_text_position', true ) ) ? get_post_meta( $post->ID, '_rss_slider_text_position', true ) : 'top';
+        $slider_navigation = ( get_post_meta( $post->ID, '_rss_slider_navigation', true ) ) ? get_post_meta( $post->ID, '_rss_slider_navigation', true ) : '';
         $slider_auto = ( get_post_meta( $post->ID, '_rss_slider_auto', true ) ) ? get_post_meta( $post->ID, '_rss_slider_auto', true ) : '';
     ?>
         <div class="form-wrap">
@@ -235,6 +236,11 @@ class Really_Simple_Slider {
         <option value="bottom" <?php selected( $slider_text_position, 'bottom' ); ?>><?php _e( 'Under the images', 'really-simple-slider' ); ?></option>
         <option value="hidden" <?php selected( $slider_text_position, 'hidden' ); ?>><?php _e( 'Hidden behind the images', 'really-simple-slider' ); ?></option>
         </select>
+        </div>
+        <div class="form-field">
+        <label for="slider_navigation"><?php _e( 'Show Navigation Arrows:', 'really-simple-slider' ); ?>
+        <input type="checkbox" id="slider_navigation" name="slider_navigation" value="true" <?php checked( $slider_navigation, 'true' ); ?> />
+        </label>
         </div>
         <div class="form-field">
         <label for="slider_auto"><?php _e( 'Automatic Playback:', 'really-simple-slider' ); ?>
@@ -342,6 +348,9 @@ class Really_Simple_Slider {
             $slider_text_position = isset( $_POST['slider_text_position'] ) ? sanitize_text_field( $_POST['slider_text_position'] ) : 'top';
             update_post_meta( $post_id, '_rss_slider_text_position', $slider_text_position );
 
+            $slider_navigation = isset( $_POST['slider_navigation'] ) ? $_POST['slider_navigation'] : '';
+            update_post_meta( $post_id, '_rss_slider_navigation', $slider_navigation );
+
             $slider_auto = isset( $_POST['slider_auto'] ) ? $_POST['slider_auto'] : '';
             update_post_meta( $post_id, '_rss_slider_auto', $slider_auto );
 
@@ -398,6 +407,7 @@ class Really_Simple_Slider {
         $slider_text = apply_filters( 'the_content', $slider->post_content );
         $slider_fx = ( get_post_meta( $id, '_rss_slider_fx', true ) ) ? get_post_meta( $id, '_rss_slider_fx', true ) : 'fade';
         $slider_text_position = ( get_post_meta( $id, '_rss_slider_text_position', true ) ) ? get_post_meta( $id, '_rss_slider_text_position', true ) : 'top';
+        $slider_navigation = ( get_post_meta( $id, '_rss_slider_navigation', true ) ) ? true : '';
         $slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? 8000 : 0;
         $slider_items = get_post_meta( $id, '_rss_slider_items', true );
         
@@ -435,8 +445,17 @@ class Really_Simple_Slider {
                 'pauseOnFocus' => false,
                 'cssEase' => 'linear',
                 'lazyLoad' => 'anticipated',
-                'nextArrow' => sprintf( '#slider-%d .slide', $id ),
+                'prevArrow' => sprintf( '#slider-%d .slider-navigation .slider-prev', $id ),
+                'nextArrow' => sprintf( '#slider-%1$d .slider-navigation .slider-next, #slider-%2$d .slide', $id, $id ),
             );
+
+            if ( $slider_navigation ) {
+                $html .= '<div class="slider-navigation">
+                        <span class="slider-prev slider-arrow">' . __( 'previous', 'really-simple-slider' ) . '</span>
+                        <span class="slider-navigation-separator"> | </span>
+                        <span class="slider-next slider-arrow">' . __( 'next', 'really-simple-slider' ) . '</span>
+                    </div>';
+            }
 
             $html .= "<div class='slider-items'";
             

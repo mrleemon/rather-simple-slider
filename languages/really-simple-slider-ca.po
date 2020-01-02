@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Really Simple Slider\n"
-"POT-Creation-Date: 2019-12-29 14:44+0100\n"
-"PO-Revision-Date: 2019-12-29 14:59+0100\n"
+"POT-Creation-Date: 2020-01-02 14:31+0100\n"
+"PO-Revision-Date: 2020-01-02 14:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -15,8 +15,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
@@ -56,7 +56,7 @@ msgstr "No s'han trobat sliders"
 msgid "No Sliders found in Trash"
 msgstr "No s'han trobat sliders"
 
-#: really-simple-slider.php:188 really-simple-slider.php:576
+#: really-simple-slider.php:188 really-simple-slider.php:613
 msgid "Shortcode"
 msgstr "Shortcode"
 
@@ -76,116 +76,128 @@ msgstr "El vostre shortcode:"
 msgid ""
 "Copy and paste this shortcode into your Post, Page or Custom Post editor."
 msgstr ""
-"Copieu i enganxeu aquest codi quan editeu una entrada, una pàgina o un "
-"altre contingut."
+"Copieu i enganxeu aquest codi quan editeu una entrada, una pàgina o un altre "
+"contingut."
 
-#: really-simple-slider.php:225
+#: really-simple-slider.php:226
 msgid "Effect:"
 msgstr "Efecte:"
 
-#: really-simple-slider.php:227
+#: really-simple-slider.php:228
 msgid "Fade"
 msgstr "Fade"
 
-#: really-simple-slider.php:228
+#: really-simple-slider.php:229
 msgid "Slide"
 msgstr "Desplaçament"
 
-#: really-simple-slider.php:232
+#: really-simple-slider.php:233
 msgid "Text Position:"
 msgstr "Posició del text:"
 
-#: really-simple-slider.php:234
+#: really-simple-slider.php:235
 msgid "Over the images"
 msgstr "Sobre les imatges"
 
-#: really-simple-slider.php:235
+#: really-simple-slider.php:236
 msgid "Under the images"
 msgstr "Sota les imatges"
 
-#: really-simple-slider.php:236
+#: really-simple-slider.php:237
 msgid "Hidden behind the images"
 msgstr "Ocult darrere de les imatges"
 
-#: really-simple-slider.php:240
+#: really-simple-slider.php:241
+msgid "Show Navigation Arrows:"
+msgstr ""
+
+#: really-simple-slider.php:246
 msgid "Automatic Playback:"
 msgstr "Reproducció automàtica:"
 
-#: really-simple-slider.php:285
+#: really-simple-slider.php:291
 msgid "Delete item"
 msgstr "Elimina element"
 
-#: really-simple-slider.php:285
+#: really-simple-slider.php:291
 msgid "Delete"
 msgstr "Elimina"
 
-#: really-simple-slider.php:305
+#: really-simple-slider.php:311
 msgid "Add items to slider"
 msgstr "Afegeix elements al slider"
 
-#: really-simple-slider.php:305
+#: really-simple-slider.php:311
 msgid "Add slider items"
 msgstr "Afegeix elements al slider"
 
-#: really-simple-slider.php:427
+#: really-simple-slider.php:425
 msgid "text"
 msgstr "text"
 
-#: really-simple-slider.php:428
+#: really-simple-slider.php:426
 msgid "images"
 msgstr "imatges"
 
-#: really-simple-slider.php:490
+#: really-simple-slider.php:454
+msgid "previous"
+msgstr "anterior"
+
+#: really-simple-slider.php:456
+msgid "next"
+msgstr "següent"
+
+#: really-simple-slider.php:527
 msgid "Add a Slider"
 msgstr "Afegeix un slider"
 
-#: really-simple-slider.php:491
+#: really-simple-slider.php:528
 msgid "Add Slider"
 msgstr "Afegeix slider"
 
-#: really-simple-slider.php:522
+#: really-simple-slider.php:559
 msgid "Please select a Slider"
 msgstr "Seleccioneu un slider"
 
-#: really-simple-slider.php:536
+#: really-simple-slider.php:573
 msgid "Add a slider"
 msgstr "Afegeix un slider"
 
-#: really-simple-slider.php:537
+#: really-simple-slider.php:574
 msgid "Select a slider to insert from the dropdown below:"
 msgstr "Seleccioneu un slider a inserir del següent desplegable:"
 
-#: really-simple-slider.php:542
+#: really-simple-slider.php:579
 msgid "Select a slider"
 msgstr "Selecciona un slider"
 
-#: really-simple-slider.php:559
+#: really-simple-slider.php:596
 msgid "Insert Slider"
 msgstr "Insereix slider"
 
-#: really-simple-slider.php:560
+#: really-simple-slider.php:597
 msgid "Close"
 msgstr "Tanca"
 
-#: really-simple-slider.php:604
+#: really-simple-slider.php:641
 msgid "Embed Media Item"
 msgstr "Incrusta element multimèdia"
 
-#: really-simple-slider.php:608
+#: really-simple-slider.php:645
 msgid "URL"
 msgstr "URL"
 
-#: really-simple-slider.php:612
+#: really-simple-slider.php:649
 msgid "If provided, this media item will be displayed instead of the image"
 msgstr ""
 "Si s'ha proporcionat, es mostrarà aquest element multimèdia en lloc de la "
 "imatge"
 
-#: really-simple-slider.php:615
+#: really-simple-slider.php:652
 msgid "Width"
 msgstr "Amplada"
 
-#: really-simple-slider.php:621
+#: really-simple-slider.php:658
 msgid "Height"
 msgstr "Alçada"
 

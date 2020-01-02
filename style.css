@@ -16,8 +16,14 @@
 }
 
 .slider .slide,
-.slider .slider-switch {
+.slider .slider-switch,
+.slider .slider-arrow {
     cursor: pointer;
+}
+
+.slider .slider-navigation {
+    display: inline-block;
+    margin-bottom: 20px;
 }
 
 .slider .slide .slide-caption {
