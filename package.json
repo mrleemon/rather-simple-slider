@@ -1,0 +1,31 @@
+{
+  "name": "really-simple-slider",
+  "version": "1.0.0",
+  "license": "GPL-2.0-or-later",
+  "main": "build/index.js",
+  "dependencies": {
+    "classnames": "2.2.6"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^6.1.1",
+    "autoprefixer": "^9.6.1",
+    "css-loader": "^2.1.1",
+    "ignore-emit-webpack-plugin": "^2.0.2",
+    "mini-css-extract-plugin": "^0.6.0",
+    "node-sass": "^4.12.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.2.0"
+  },
+  "scripts": {
+    "build": "wp-scripts build",
+    "check-engines": "wp-scripts check-engines",
+    "check-licenses": "wp-scripts check-licenses",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "start": "wp-scripts start",
+    "test:e2e": "wp-scripts test-e2e",
+    "test:unit": "wp-scripts test-unit-js"
+  }
+}

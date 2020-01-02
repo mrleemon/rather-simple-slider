@@ -48,6 +48,7 @@ class Really_Simple_Slider {
 
         add_action( 'init', array( $this, 'load_language' ) );
         add_action( 'init', array( $this, 'register_post_type' ) );
+        add_action( 'init', array( $this, 'register_block' ) );
 
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
@@ -149,6 +150,7 @@ class Really_Simple_Slider {
             'exclude_from_search' => true,
             'publicly_queryable' => false,
             'show_in_nav_menus' => false,
+            'show_in_rest' => true,
             'show_ui' => true,
             'menu_position' => 5,
             'menu_icon' => 'dashicons-images-alt2',
@@ -703,6 +705,51 @@ class Really_Simple_Slider {
             }
         }
         return $post;
+    }
+
+
+    /**
+     * Registers block
+     *
+     * @since 1.0
+     *
+     */
+    function register_block() {
+
+        if ( ! function_exists( 'register_block_type' ) ) {
+            // The block editor is not active.
+            return;
+        }
+
+        wp_register_style(
+            'really-simple-slider-block-editor-css',
+            plugins_url( 'build/editor.css', __FILE__ ),
+            array( 'wp-edit-blocks' ),
+            filemtime( plugin_dir_path( __FILE__ ) . 'build/editor.css' )
+        );
+
+        wp_register_style(
+            'really-simple-slider-block-css',
+            plugins_url( 'build/style.css', __FILE__ ),
+            null,
+            filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
+        );
+        
+        wp_register_script(
+            'really-simple-slider-block',
+            plugins_url( 'build/index.js', __FILE__ ),
+            array( 'wp-blocks', 'wp-components', 'wp-data', 'wp-element', 'wp-i18n' ),
+            filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' )
+        );
+
+        register_block_type( 'occ/really-simple-slider', array(
+            'editor_style'  => 'really-simple-slider-block-editor-css',
+            'editor_script' => 'really-simple-slider-block',
+            'style' => 'really-simple-slider-block-css',
+        ) );
+
+        wp_set_script_translations( 'really-simple-slider', 'really-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
+
     }
 
 }
