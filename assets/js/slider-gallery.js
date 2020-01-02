@@ -5,10 +5,10 @@ jQuery( function( $ ) {
     var $image_gallery_ids = $( '#slider_items' );
     var $slider_images = $( '#slider_images_container' ).find( 'ul.slider_images' );
 
-    $( '.add_slider_images' ).on( 'click', 'a', function( event ) {
+    $( '.add_slider_images' ).on( 'click', 'a', function( e ) {
         var $el = $( this );
 
-        event.preventDefault();
+        e.preventDefault();
 
         // If the media frame already exists, reopen it.
         if ( slider_gallery_frame ) {
@@ -43,7 +43,7 @@ jQuery( function( $ ) {
                     if ( attachment.type == 'image' ) {
                         attachment_ids = attachment_ids ? attachment_ids + ',' + attachment.id : attachment.id;
                         var attachment_image = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
-                        $slider_images.append( '<li class="image" data-attachment_id="' + attachment.id + '"><img src="' + attachment_image + '" /><ul class="actions"><li><a href="#" class="delete" title="' + $el.data( 'delete' ) + '">' + $el.data( 'text' ) + '</a></li></ul></li>' );
+                        $slider_images.append( '<li class="image" data-attachment_id="' + attachment.id + '"><a class="edit_item" href="#"><img src="' + attachment_image + '" /></a><ul class="actions"><li><a href="#" class="delete" title="' + $el.data( 'delete' ) + '">' + $el.data( 'text' ) + '</a></li></ul></li>' );
                     }
 
                 }
@@ -66,10 +66,10 @@ jQuery( function( $ ) {
         helper: 'clone',
         opacity: 0.65,
         placeholder: 'rsc-metabox-sortable-placeholder',
-        start: function( event, ui ) {
+        start: function( e, ui ) {
             ui.item.css( 'background-color', '#f6f6f6' );
         },
-        stop: function( event, ui ) {
+        stop: function( e, ui ) {
             ui.item.removeAttr( 'style' );
         },
         update: function() {
@@ -103,5 +103,65 @@ jQuery( function( $ ) {
 
         return false;
     });
-    
+
+    // Edit images.
+    $( '#slider_images_container' ).on( 'click', 'a.edit_item', function( e ) {
+        var $el = $( this );
+        var selected = $( this ).parent().attr( 'data-attachment_id' );
+
+        e.preventDefault();
+
+        // If the media frame already exists, reopen it.
+        if ( slider_gallery_frame ) {
+            slider_gallery_frame.on( 'open', function() {
+                var selection = slider_gallery_frame.state().get( 'selection' );
+                selection.reset( selected ? [ wp.media.attachment( selected ) ] : [] );
+            });
+            slider_gallery_frame.open();
+            return;
+        }
+
+        // Create the media frame.
+        slider_gallery_frame = wp.media.frames.slider_gallery = wp.media({
+            // Set the title of the modal.
+            title: $el.data( 'choose' ),
+            states: [
+                new wp.media.controller.Library({
+                    title: $el.data( 'choose' ),
+                    filterable: 'all',
+                    multiple: true
+                })
+            ]
+        });
+        
+        // When an image is selected, run a callback.
+        slider_gallery_frame.on( 'select', function() {
+            var selection = slider_gallery_frame.state().get( 'selection' );
+            var attachment_ids = $image_gallery_ids.val();
+
+            selection.map( function( attachment ) {
+                attachment = attachment.toJSON();
+                if ( attachment.id ) {
+                    if ( attachment.type == 'image' ) {
+                        attachment_ids = attachment_ids ? attachment_ids + ',' + attachment.id : attachment.id;
+                        var attachment_image = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
+                        $slider_images.append( '<li class="image" data-attachment_id="' + attachment.id + '"><a class="edit_item" href="#"><img src="' + attachment_image + '" /></a><ul class="actions"><li><a href="#" class="delete" title="' + $el.data( 'delete' ) + '">' + $el.data( 'text' ) + '</a></li></ul></li>' );
+                    }
+
+                }
+            });
+
+            $image_gallery_ids.val( attachment_ids );
+        });
+
+        slider_gallery_frame.on( 'open', function() {
+            var selection = slider_gallery_frame.state().get( 'selection' );
+            selection.reset( selected ? [ wp.media.attachment( selected ) ] : [] );
+        });
+        
+        // Finally, open the modal.
+        slider_gallery_frame.open();
+
+    });
+
 });

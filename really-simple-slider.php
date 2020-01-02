@@ -286,11 +286,11 @@ class Really_Simple_Slider {
                             if ( wp_attachment_is_image( $attachment_id ) ) {
                                 $attachment = wp_get_attachment_image( $attachment_id, 'thumbnail' );
                                 echo '<li class="image" data-attachment_id="' . esc_attr( $attachment_id ) . '">
-                                    ' . $attachment . '
-                                    <ul class="actions">
+                                      <a class="edit_item" href="#">' . $attachment . '</a>
+                                      <ul class="actions">
                                         <li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete item', 'really-simple-slider' ) . '">' . __( 'Delete', 'really-simple-slider' ) . '</a></li>
-                                    </ul>
-                                </li>';
+                                      </ul>
+                                      </li>';
                                 // rebuild ids to be saved
                                 $updated_gallery_ids[] = $attachment_id;
                             }
