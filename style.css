@@ -21,6 +21,12 @@
     cursor: pointer;
 }
 
+.slider .slider-switch {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
 .slider .slider-navigation {
     display: inline-block;
     margin-bottom: 20px;
