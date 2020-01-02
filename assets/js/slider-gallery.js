@@ -1,12 +1,13 @@
 jQuery( function( $ ) {
     
     // slider gallery file uploads.
-    var slider_gallery_frame;
+    var l10n = wp.media.view.l10n;
     var $image_gallery_ids = $( '#slider_items' );
     var $slider_images = $( '#slider_images_container' ).find( 'ul.slider_images' );
 
     $( '.add_slider_images' ).on( 'click', 'a', function( e ) {
         var $el = $( this );
+        var slider_gallery_frame;
 
         e.preventDefault();
 
@@ -21,7 +22,7 @@ jQuery( function( $ ) {
             // Set the title of the modal.
             title: $el.data( 'choose' ),
             button: {
-                text: $el.data( 'update' )
+                text: l10n.select
             },
             states: [
                 new wp.media.controller.Library({
@@ -107,24 +108,28 @@ jQuery( function( $ ) {
     // Edit images.
     $( '#slider_images_container' ).on( 'click', 'a.edit_item', function( e ) {
         var $el = $( this );
+        var slider_gallery_edit_frame;
         var selected = $( this ).parent().attr( 'data-attachment_id' );
 
         e.preventDefault();
 
         // If the media frame already exists, reopen it.
-        if ( slider_gallery_frame ) {
-            slider_gallery_frame.on( 'open', function() {
-                var selection = slider_gallery_frame.state().get( 'selection' );
+        if ( slider_gallery_edit_frame ) {
+            slider_gallery_edit_frame.on( 'open', function() {
+                var selection = slider_gallery_edit_frame.state().get( 'selection' );
                 selection.reset( selected ? [ wp.media.attachment( selected ) ] : [] );
             });
-            slider_gallery_frame.open();
+            slider_gallery_edit_frame.open();
             return;
         }
 
         // Create the media frame.
-        slider_gallery_frame = wp.media.frames.slider_gallery = wp.media({
+        slider_gallery_edit_frame = wp.media.frames.slider_gallery = wp.media({
             // Set the title of the modal.
             title: $el.data( 'choose' ),
+            button: {
+                text: l10n.back
+            },            
             states: [
                 new wp.media.controller.Library({
                     title: $el.data( 'choose' ),
@@ -134,33 +139,13 @@ jQuery( function( $ ) {
             ]
         });
         
-        // When an image is selected, run a callback.
-        slider_gallery_frame.on( 'select', function() {
-            var selection = slider_gallery_frame.state().get( 'selection' );
-            var attachment_ids = $image_gallery_ids.val();
-
-            selection.map( function( attachment ) {
-                attachment = attachment.toJSON();
-                if ( attachment.id ) {
-                    if ( attachment.type == 'image' ) {
-                        attachment_ids = attachment_ids ? attachment_ids + ',' + attachment.id : attachment.id;
-                        var attachment_image = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
-                        $slider_images.append( '<li class="image" data-attachment_id="' + attachment.id + '"><a class="edit_item" href="#"><img src="' + attachment_image + '" /></a><ul class="actions"><li><a href="#" class="delete" title="' + $el.data( 'delete' ) + '">' + $el.data( 'text' ) + '</a></li></ul></li>' );
-                    }
-
-                }
-            });
-
-            $image_gallery_ids.val( attachment_ids );
-        });
-
-        slider_gallery_frame.on( 'open', function() {
-            var selection = slider_gallery_frame.state().get( 'selection' );
+        slider_gallery_edit_frame.on( 'open', function() {
+            var selection = slider_gallery_edit_frame.state().get( 'selection' );
             selection.reset( selected ? [ wp.media.attachment( selected ) ] : [] );
         });
         
         // Finally, open the modal.
-        slider_gallery_frame.open();
+        slider_gallery_edit_frame.open();
 
     });
 
