@@ -116,7 +116,31 @@ jQuery( function( $ ) {
         // If the media frame already exists, reopen it.
         if ( slider_gallery_edit_frame ) {
             slider_gallery_edit_frame.on( 'open', function() {
+                var library = slider_gallery_edit_frame.state().get( 'library' );
+
+                // Overload the library's comparator to push items that are not in
+                // the mirrored query to the front of the aggregate collection.
+                library.comparator = function( a, b ) {
+                    var aInQuery = !! this.mirroring.get( a.cid ),
+                        bInQuery = !! this.mirroring.get( b.cid );
+        
+                    if ( ! aInQuery && bInQuery ) {
+                        return -1;
+                    } else if ( aInQuery && ! bInQuery ) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                };
+    
                 var selection = slider_gallery_edit_frame.state().get( 'selection' );
+    
+                // Add the selected item to the library, so 
+                // images that are not initially loaded still appear.
+                attachment = wp.media.attachment( selected );
+                attachment.fetch();
+                library.add( attachment ? [ attachment ] : [] );
+                
                 selection.reset( selected ? [ wp.media.attachment( selected ) ] : [] );
             });
             slider_gallery_edit_frame.open();
@@ -134,13 +158,37 @@ jQuery( function( $ ) {
                 new wp.media.controller.Library({
                     title: $el.data( 'choose' ),
                     filterable: 'all',
-                    multiple: true
+                    multiple: false
                 })
             ]
         });
         
         slider_gallery_edit_frame.on( 'open', function() {
+            var library = slider_gallery_edit_frame.state().get( 'library' );
+
+            // Overload the library's comparator to push items that are not in
+            // the mirrored query to the front of the aggregate collection.
+            library.comparator = function( a, b ) {
+                var aInQuery = !! this.mirroring.get( a.cid ),
+                    bInQuery = !! this.mirroring.get( b.cid );
+    
+                if ( ! aInQuery && bInQuery ) {
+                    return -1;
+                } else if ( aInQuery && ! bInQuery ) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            };
+
             var selection = slider_gallery_edit_frame.state().get( 'selection' );
+
+            // Add the selected item to the library, so 
+            // images that are not initially loaded still appear.
+            attachment = wp.media.attachment( selected );
+            attachment.fetch();
+            library.add( attachment ? [ attachment ] : [] );
+       
             selection.reset( selected ? [ wp.media.attachment( selected ) ] : [] );
         });
         
