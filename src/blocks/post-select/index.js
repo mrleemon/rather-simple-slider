@@ -65,7 +65,7 @@ export const settings = {
             <Placeholder
 				key='really-simple-slider-block'
 				icon='images-alt2'
-				label={ __( 'Really Simple Slider Block', 'really-simple-slider' ) }
+				label={ __( 'Really Simple Slider', 'really-simple-slider' ) }
 				className={ className }>
                     <SelectControl
                         label={ __( 'Select a slider:', 'really-simple-slider' ) }

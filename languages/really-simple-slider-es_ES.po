@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Really Simple Slider\n"
-"POT-Creation-Date: 2020-01-03 15:29+0100\n"
-"PO-Revision-Date: 2020-01-03 15:30+0100\n"
+"POT-Creation-Date: 2020-01-03 22:25+0100\n"
+"PO-Revision-Date: 2020-01-03 22:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -201,7 +201,7 @@ msgid "Height"
 msgstr "Altura"
 
 #. Plugin Name of the plugin/theme
-#: src/blocks/post-select/index.js:24
+#: src/blocks/post-select/index.js:24 src/blocks/post-select/index.js:68
 msgid "Really Simple Slider"
 msgstr ""
 
@@ -224,10 +224,6 @@ msgstr "No se ha encontrado ningún slider"
 #: src/blocks/post-select/index.js:53
 msgid "Select a slider..."
 msgstr "Selecciona un slider..."
-
-#: src/blocks/post-select/index.js:68
-msgid "Really Simple Slider Block"
-msgstr "Bloque Really Simple Slider"
 
 #: src/blocks/post-select/index.js:71
 msgid "Select a slider:"
