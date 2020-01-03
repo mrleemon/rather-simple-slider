@@ -132,9 +132,9 @@ jQuery( function( $ ) {
                         return 0;
                     }
                 };
-    
+
                 var selection = slider_gallery_edit_frame.state().get( 'selection' );
-    
+
                 // Add the selected item to the library, so 
                 // images that are not initially loaded still appear.
                 attachment = wp.media.attachment( selected );

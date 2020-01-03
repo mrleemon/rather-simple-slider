@@ -14,6 +14,7 @@
     "mini-css-extract-plugin": "^0.6.0",
     "node-sass": "^4.12.0",
     "path": "^0.12.7",
+    "po2json": "^1.0.0-alpha",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.2.0"
   },
@@ -26,6 +27,7 @@
     "lint:pkg-json": "wp-scripts lint-pkg-json",
     "start": "wp-scripts start",
     "test:e2e": "wp-scripts test-e2e",
-    "test:unit": "wp-scripts test-unit-js"
+    "test:unit": "wp-scripts test-unit-js",
+    "i18n": "po2json languages/really-simple-slider-es_ES.po languages/really-simple-slider-es_ES-really-simple-slider-block.json -f jed && po2json languages/really-simple-slider-ca.po languages/really-simple-slider-ca-really-simple-slider-block.json -f jed"
   }
 }
