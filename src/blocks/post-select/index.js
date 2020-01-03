@@ -7,7 +7,7 @@
  * WordPress dependencies
  */
 const { createBlock, registerBlockType } = wp.blocks;
-const { G, Path, SVG, SelectControl } = wp.components;
+const { G, Path, SVG, Placeholder, SelectControl } = wp.components;
 const { withSelect } = wp.data;
 const { RawHTML } = wp.element;
 const { __, setLocaleData } = wp.i18n;
@@ -26,7 +26,7 @@ const blockAttributes = {
 export const name = 'occ/really-simple-slider';
 
 export const settings = {
-    title: __( 'Slider', 'really-simple-slider' ),
+    title: __( 'Really Simple Slider', 'really-simple-slider' ),
     description: __( 'Display a slider.', 'really-simple-slider' ),
     icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="none" d="M0 0h24v24H0V0z" /><G><Path d="M20 4v12H8V4h12m0-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 9.67l1.69 2.26 2.48-3.1L19 15H9zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z" /></G></SVG>,
     category: 'common',
@@ -40,10 +40,10 @@ export const settings = {
         };
     } )
     ( props => {
-        const attributes = props.attributes;
+        const { attributes, className } = props;
 
         const setID = value => {
-            props.setAttributes( { id: value } );
+            props.setAttributes( { id: Number( value ) } );
         };
 
         if ( ! props.posts ) {
@@ -68,25 +68,27 @@ export const settings = {
         }
 
         return (
-            <div>
-                <SelectControl
-                    label={ __( 'Select a slider:', 'really-simple-slider' ) }
-                    value={ attributes.id }
-                    options={ options }
-                    onChange={ setID }
-                />
-            </div>
+            <Placeholder
+				key='really-simple-slider-block'
+				icon='images-alt2'
+				label={ __( 'Really Simple Slider Block' ) }
+				className={ className }>
+                    <SelectControl
+                        label={ __( 'Select a slider:', 'really-simple-slider' ) }
+                        value={ attributes.id }
+                        options={ options }
+                        onChange={ setID }
+                    />
+            </Placeholder>
         );
 
     } ),
 
     save( { attributes } ) {
-        //const { images } = attributes;
-        var myShortcode = '[custom-shortcode param_1="value_1" param_2="value_2" /]';
+        const { id } = attributes;
+        var shortcode = '[slider id="' + id + '"]';
         return (
-            <div>
-                <RawHTML>{ myShortcode }</RawHTML>
-            </div>
+            <RawHTML>{ shortcode }</RawHTML>
         );
     },
 
