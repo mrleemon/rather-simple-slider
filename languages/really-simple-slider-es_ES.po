@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Really Simple Slider\n"
 "POT-Creation-Date: 2020-01-03 22:25+0100\n"
-"PO-Revision-Date: 2020-01-03 22:25+0100\n"
+"PO-Revision-Date: 2020-01-03 23:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -207,7 +207,7 @@ msgstr ""
 
 #: src/blocks/post-select/index.js:25
 msgid "Display a slider."
-msgstr "Mostrar un slider."
+msgstr "Muestra un slider."
 
 #: src/blocks/post-select/index.js:28
 msgid "photos"
