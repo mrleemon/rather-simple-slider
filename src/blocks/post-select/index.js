@@ -1,16 +1,11 @@
 /**
- * External dependencies
- */
-//const { filter, every, map, some } = lodash;
-
-/**
  * WordPress dependencies
  */
-const { createBlock, registerBlockType } = wp.blocks;
+const { registerBlockType } = wp.blocks;
 const { G, Path, SVG, Placeholder, SelectControl } = wp.components;
 const { withSelect } = wp.data;
 const { RawHTML } = wp.element;
-const { __, setLocaleData } = wp.i18n;
+const { __ } = wp.i18n;
 
 /**
  * Internal dependencies
@@ -47,16 +42,16 @@ export const settings = {
         };
 
         if ( ! props.posts ) {
-            return __( 'Loading...' );
+            return __( 'Loading...', 'really-simple-slider' );
         }
 
         if ( props.posts.length === 0 ) {
-            return __( 'No sliders found' );
+            return __( 'No sliders found', 'really-simple-slider' );
         }
 
         var options = [];
         options.push( {
-            label: __( 'Choose' ),
+            label: __( 'Choose a slider', 'really-simple-slider' ),
             value: ''
         } );
 
@@ -71,7 +66,7 @@ export const settings = {
             <Placeholder
 				key='really-simple-slider-block'
 				icon='images-alt2'
-				label={ __( 'Really Simple Slider Block' ) }
+				label={ __( 'Really Simple Slider Block', 'really-simple-slider' ) }
 				className={ className }>
                     <SelectControl
                         label={ __( 'Select a slider:', 'really-simple-slider' ) }

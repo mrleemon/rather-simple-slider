@@ -748,7 +748,7 @@ class Really_Simple_Slider {
             'style' => 'really-simple-slider-block-css',
         ) );
 
-        wp_set_script_translations( 'really-simple-slider', 'really-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
+        wp_set_script_translations( 'really-simple-slider-block', 'really-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
 
     }
 
