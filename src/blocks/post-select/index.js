@@ -29,9 +29,8 @@ export const settings = {
     attributes: blockAttributes,
 
     edit: withSelect( ( select ) => {
-        var sliders = select( 'core' ).getEntityRecords( 'postType', 'slider', { per_page: -1 } );
         return {
-            posts: sliders
+            posts: select( 'core' ).getEntityRecords( 'postType', 'slider', { per_page: -1 } )
         };
     } )
     ( props => {
@@ -51,7 +50,7 @@ export const settings = {
 
         var options = [];
         options.push( {
-            label: __( 'Choose a slider', 'really-simple-slider' ),
+            label: __( 'Select a slider...', 'really-simple-slider' ),
             value: ''
         } );
 
