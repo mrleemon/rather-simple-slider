@@ -1,14 +1,14 @@
 <?php
 /*
-Plugin Name: Really Simple Slider
+Plugin Name: Rather Simple Slider
 Version: v1.0
 Plugin URI:
 Author: Oscar Ciutat
 Author URI: http://oscarciutat.com/code/
-Description: A simple slider
+Description: A really simple slider
 */
 
-class Really_Simple_Slider {
+class Rather_Simple_Slider {
     
     /**
      * Plugin instance.
@@ -96,7 +96,7 @@ class Really_Simple_Slider {
      * load_language
      */
     public function load_language() {
-        load_plugin_textdomain( 'really-simple-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+        load_plugin_textdomain( 'rather-simple-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
 
     
@@ -106,10 +106,10 @@ class Really_Simple_Slider {
     function enqueue_scripts() {
         // enqueue styles
         wp_enqueue_style( 'slick-css', plugins_url( '/assets/css/slick.css', __FILE__ ) );
-        wp_enqueue_style( 'really-simple-slider-css', plugins_url( '/style.css', __FILE__ ), array( 'dashicons' ) );
+        wp_enqueue_style( 'rather-simple-slider-css', plugins_url( '/style.css', __FILE__ ), array( 'dashicons' ) );
         // enqueue scripts
         wp_enqueue_script( 'slick', plugins_url( '/assets/js/slick.min.js', __FILE__ ), array( 'jquery' ), false );
-        wp_enqueue_script( 'really-simple-slider-frontend', plugins_url( '/assets/js/frontend.js', __FILE__ ), array( 'jquery', 'slick' ), false );
+        wp_enqueue_script( 'rather-simple-slider-frontend', plugins_url( '/assets/js/frontend.js', __FILE__ ), array( 'jquery', 'slick' ), false );
     }
 
 
@@ -131,16 +131,16 @@ class Really_Simple_Slider {
     function register_post_type() {
         
         $labels = array(
-            'name' => __( 'Sliders', 'really-simple-slider' ),
-            'singular_name' => __( 'Slider', 'really-simple-slider' ),
-            'add_new' => __( 'Add New Slider', 'really-simple-slider' ),
-            'add_new_item' => __( 'Add New Slider', 'really-simple-slider' ),
-            'edit_item' => __( 'Edit Slider', 'really-simple-slider' ),
-            'new_item' => __( 'New Slider', 'really-simple-slider' ),
-            'view_item' => __( 'View Slider', 'really-simple-slider' ),
-            'search_items' => __( 'Search Sliders', 'really-simple-slider' ),
-            'not_found' => __( 'No Sliders found', 'really-simple-slider' ),
-            'not_found_in_trash' => __( 'No Sliders found in Trash', 'really-simple-slider' )
+            'name' => __( 'Sliders', 'rather-simple-slider' ),
+            'singular_name' => __( 'Slider', 'rather-simple-slider' ),
+            'add_new' => __( 'Add New Slider', 'rather-simple-slider' ),
+            'add_new_item' => __( 'Add New Slider', 'rather-simple-slider' ),
+            'edit_item' => __( 'Edit Slider', 'rather-simple-slider' ),
+            'new_item' => __( 'New Slider', 'rather-simple-slider' ),
+            'view_item' => __( 'View Slider', 'rather-simple-slider' ),
+            'search_items' => __( 'Search Sliders', 'rather-simple-slider' ),
+            'not_found' => __( 'No Sliders found', 'rather-simple-slider' ),
+            'not_found_in_trash' => __( 'No Sliders found in Trash', 'rather-simple-slider' )
         );
       
         $args = array(
@@ -187,9 +187,9 @@ class Really_Simple_Slider {
     */
 
     function add_slider_meta_boxes() {
-        add_meta_box( 'slider-shortcode', __( 'Shortcode', 'really-simple-slider' ), array( $this , 'slider_shortcode_meta_box' ), 'slider', 'side', 'default' );
-        add_meta_box( 'slider-options', __( 'Options', 'really-simple-slider' ), array( $this , 'slider_options_meta_box' ), 'slider', 'side', 'default' );
-        add_meta_box( 'slider-items', __( 'Slider items', 'really-simple-slider' ), array( $this , 'slider_items_meta_box' ), 'slider', 'normal', 'default' );
+        add_meta_box( 'slider-shortcode', __( 'Shortcode', 'rather-simple-slider' ), array( $this , 'slider_shortcode_meta_box' ), 'slider', 'side', 'default' );
+        add_meta_box( 'slider-options', __( 'Options', 'rather-simple-slider' ), array( $this , 'slider_options_meta_box' ), 'slider', 'side', 'default' );
+        add_meta_box( 'slider-items', __( 'Slider items', 'rather-simple-slider' ), array( $this , 'slider_items_meta_box' ), 'slider', 'normal', 'default' );
     }
 
 
@@ -203,9 +203,9 @@ class Really_Simple_Slider {
     ?>
         <div class="form-wrap">
         <div class="form-field">
-        <label for="slider_get_shortcode"><?php _e( 'Your Shortcode:', 'really-simple-slider' ); ?></label>
+        <label for="slider_get_shortcode"><?php _e( 'Your Shortcode:', 'rather-simple-slider' ); ?></label>
         <input readonly="true" id="slider_get_shortcode" type="text" class="widefat" name="" value="<?php echo esc_attr( $shortcode ); ?>" />
-        <p><?php _e( 'Copy and paste this shortcode into your Post, Page or Custom Post editor.', 'really-simple-slider' ); ?></p>
+        <p><?php _e( 'Copy and paste this shortcode into your Post, Page or Custom Post editor.', 'rather-simple-slider' ); ?></p>
         </div>
         </div>
     <?php
@@ -225,27 +225,27 @@ class Really_Simple_Slider {
     ?>
         <div class="form-wrap">
         <div class="form-field">
-        <label for="slider_fx"><?php _e( 'Effect:', 'really-simple-slider' ); ?></label>
+        <label for="slider_fx"><?php _e( 'Effect:', 'rather-simple-slider' ); ?></label>
         <select id="slider_fx" name="slider_fx">
-        <option value="fade" <?php selected( $slider_fx, 'fade' ); ?>><?php _e( 'Fade', 'really-simple-slider' ); ?></option>
-        <option value="scrollHorz" <?php selected( $slider_fx, 'scrollHorz' ); ?>><?php _e( 'Slide', 'really-simple-slider' ); ?></option>
+        <option value="fade" <?php selected( $slider_fx, 'fade' ); ?>><?php _e( 'Fade', 'rather-simple-slider' ); ?></option>
+        <option value="scrollHorz" <?php selected( $slider_fx, 'scrollHorz' ); ?>><?php _e( 'Slide', 'rather-simple-slider' ); ?></option>
         </select>
         </div>
         <div class="form-field">
-        <label for="slider_text_position"><?php _e( 'Text Position:', 'really-simple-slider' ); ?></label>
+        <label for="slider_text_position"><?php _e( 'Text Position:', 'rather-simple-slider' ); ?></label>
         <select id="slider_text_position" name="slider_text_position">
-        <option value="top" <?php selected( $slider_text_position, 'top' ); ?>><?php _e( 'Over the images', 'really-simple-slider' ); ?></option>
-        <option value="bottom" <?php selected( $slider_text_position, 'bottom' ); ?>><?php _e( 'Under the images', 'really-simple-slider' ); ?></option>
-        <option value="hidden" <?php selected( $slider_text_position, 'hidden' ); ?>><?php _e( 'Hidden behind the images', 'really-simple-slider' ); ?></option>
+        <option value="top" <?php selected( $slider_text_position, 'top' ); ?>><?php _e( 'Over the images', 'rather-simple-slider' ); ?></option>
+        <option value="bottom" <?php selected( $slider_text_position, 'bottom' ); ?>><?php _e( 'Under the images', 'rather-simple-slider' ); ?></option>
+        <option value="hidden" <?php selected( $slider_text_position, 'hidden' ); ?>><?php _e( 'Hidden behind the images', 'rather-simple-slider' ); ?></option>
         </select>
         </div>
         <div class="form-field">
-        <label for="slider_navigation"><?php _e( 'Show Navigation Arrows:', 'really-simple-slider' ); ?>
+        <label for="slider_navigation"><?php _e( 'Show Navigation Arrows:', 'rather-simple-slider' ); ?>
         <input type="checkbox" id="slider_navigation" name="slider_navigation" value="true" <?php checked( $slider_navigation, 'true' ); ?> />
         </label>
         </div>
         <div class="form-field">
-        <label for="slider_auto"><?php _e( 'Automatic Playback:', 'really-simple-slider' ); ?>
+        <label for="slider_auto"><?php _e( 'Automatic Playback:', 'rather-simple-slider' ); ?>
         <input type="checkbox" id="slider_auto" name="slider_auto" value="true" <?php checked( $slider_auto, 'true' ); ?> />
         </label>
         </div>
@@ -290,7 +290,7 @@ class Really_Simple_Slider {
                                 echo '<li class="image" data-attachment_id="' . esc_attr( $attachment_id ) . '">
                                       <a class="edit_item" href="#">' . $attachment . '</a>
                                       <ul class="actions">
-                                        <li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete item', 'really-simple-slider' ) . '">' . __( 'Delete', 'really-simple-slider' ) . '</a></li>
+                                        <li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete item', 'rather-simple-slider' ) . '">' . __( 'Delete', 'rather-simple-slider' ) . '</a></li>
                                       </ul>
                                       </li>';
                                 // rebuild ids to be saved
@@ -310,7 +310,7 @@ class Really_Simple_Slider {
 
         </div>
         <p class="add_slider_images hide-if-no-js">
-            <a href="#" data-choose="<?php esc_attr_e( 'Add items to slider', 'really-simple-slider' ); ?>"><?php _e( 'Add slider items', 'really-simple-slider' ); ?></a>
+            <a href="#" data-choose="<?php esc_attr_e( 'Add items to slider', 'rather-simple-slider' ); ?>"><?php _e( 'Add slider items', 'rather-simple-slider' ); ?></a>
         </p>
         <?php
     }
@@ -424,8 +424,8 @@ class Really_Simple_Slider {
 
             if ( $slider_text_position === 'hidden' ) {
                 $html .= '<div class="slider-switch">
-                            <span class="toggle-text">' . __( 'text', 'really-simple-slider' ) . '</span>
-                            <span class="toggle-media">' . __( 'images', 'really-simple-slider' ) . '</span>
+                            <span class="toggle-text">' . __( 'text', 'rather-simple-slider' ) . '</span>
+                            <span class="toggle-media">' . __( 'images', 'rather-simple-slider' ) . '</span>
                             </div>
                             <div class="slider-text">
                         ' . $slider_text . '
@@ -453,9 +453,9 @@ class Really_Simple_Slider {
 
             if ( $slider_navigation ) {
                 $html .= '<div class="slider-navigation">
-                        <span class="slider-prev slider-arrow">' . __( 'previous', 'really-simple-slider' ) . '</span>
+                        <span class="slider-prev slider-arrow">' . __( 'previous', 'rather-simple-slider' ) . '</span>
                         <span class="slider-navigation-separator"> | </span>
-                        <span class="slider-next slider-arrow">' . __( 'next', 'really-simple-slider' ) . '</span>
+                        <span class="slider-next slider-arrow">' . __( 'next', 'rather-simple-slider' ) . '</span>
                     </div>';
             }
 
@@ -526,8 +526,8 @@ class Really_Simple_Slider {
                 }
             </style>
             
-            <a href="#TB_inline?width=480&amp;inlineId=select-slider" class="button thickbox insert-slider" data-editor="<?php echo esc_attr( $editor_id ); ?>" title="<?php _e( 'Add a Slider', 'really-simple-slider' ); ?>">
-                <span class="wp-media-buttons-icon dashicons dashicons-format-image"></span><?php _e( 'Add Slider', 'really-simple-slider' ); ?>
+            <a href="#TB_inline?width=480&amp;inlineId=select-slider" class="button thickbox insert-slider" data-editor="<?php echo esc_attr( $editor_id ); ?>" title="<?php _e( 'Add a Slider', 'rather-simple-slider' ); ?>">
+                <span class="wp-media-buttons-icon dashicons dashicons-format-image"></span><?php _e( 'Add Slider', 'rather-simple-slider' ); ?>
             </a>
         <?php
 
@@ -558,7 +558,7 @@ class Really_Simple_Slider {
 
                     // Display alert and bail if no slideshow was selected
                     if ( '-1' === id ) {
-                        return alert( "<?php _e( 'Please select a Slider', 'really-simple-slider' ); ?>" );
+                        return alert( "<?php _e( 'Please select a Slider', 'rather-simple-slider' ); ?>" );
                     }
 
                     // Send shortcode to editor
@@ -572,13 +572,13 @@ class Really_Simple_Slider {
 
             <div id="select-slider" style="display: none;">
                 <div class="section">
-                    <h2><?php _e( 'Add a slider', 'really-simple-slider' ); ?></h2>
-                    <span><?php _e( 'Select a slider to insert from the dropdown below:', 'really-simple-slider' ); ?></span>
+                    <h2><?php _e( 'Add a slider', 'rather-simple-slider' ); ?></h2>
+                    <span><?php _e( 'Select a slider to insert from the dropdown below:', 'rather-simple-slider' ); ?></span>
                 </div>
 
                 <div class="section">
                     <select name="slider" id="slider">
-                        <option value="-1"><?php _e( 'Select a slider', 'really-simple-slider' ); ?></option>
+                        <option value="-1"><?php _e( 'Select a slider', 'rather-simple-slider' ); ?></option>
                         <?php
                             $args = array(
                                 'post_type'   => 'slider',
@@ -595,8 +595,8 @@ class Really_Simple_Slider {
                 </div>
 
                 <div class="section">
-                    <button id="insert-slider" class="button-primary" onClick="insertSlider();"><?php _e( 'Insert Slider', 'really-simple-slider' ); ?></button>
-                    <button id="close-slider-thickbox" class="button-secondary" style="margin-left: 5px;" onClick="tb_remove();"><?php _e( 'Close', 'really-simple-slider' ); ?></a>
+                    <button id="insert-slider" class="button-primary" onClick="insertSlider();"><?php _e( 'Insert Slider', 'rather-simple-slider' ); ?></button>
+                    <button id="close-slider-thickbox" class="button-secondary" style="margin-left: 5px;" onClick="tb_remove();"><?php _e( 'Close', 'rather-simple-slider' ); ?></a>
                 </div>
             </div>
         <?php
@@ -612,7 +612,7 @@ class Really_Simple_Slider {
         foreach( $columns as $key => $value ) {
             if ( $key == 'date' ) {
                 // Put the Shortcode column before the Date column
-                $new['shortcode'] = __( 'Shortcode', 'really-simple-slider' );
+                $new['shortcode'] = __( 'Shortcode', 'rather-simple-slider' );
             }
             $new[$key] = $value;
         }
@@ -640,7 +640,7 @@ class Really_Simple_Slider {
         $form_fields['oembed-header']['tr'] = '
             <tr>
                 <td colspan="2">
-                    <h2>' . __( 'Embed Media Item', 'really-simple-slider' ) . '</h2>
+                    <h2>' . __( 'Embed Media Item', 'rather-simple-slider' ) . '</h2>
                 </td>
             </tr>';
         $form_fields['oembed-url'] = array(
@@ -648,7 +648,7 @@ class Really_Simple_Slider {
             'input' => 'html',
             'html' => '<input class="text" id="attachments-' . $post->ID . '-oembed-url" name="attachments[' . $post->ID . '][oembed-url]" type="url"
                         value="' . get_post_meta( $post->ID, '_rss_slider_oembed_url', true ) . '" />',
-            'helps' => __( 'If provided, this media item will be displayed instead of the image', 'really-simple-slider' )
+            'helps' => __( 'If provided, this media item will be displayed instead of the image', 'rather-simple-slider' )
         );
         $form_fields['oembed-width'] = array(
             'label' => __( 'Width' ),
@@ -722,36 +722,36 @@ class Really_Simple_Slider {
         }
 
         wp_register_style(
-            'really-simple-slider-block-editor-css',
+            'rather-simple-slider-block-editor-css',
             plugins_url( 'build/editor.css', __FILE__ ),
             array( 'wp-edit-blocks' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'build/editor.css' )
         );
 
         wp_register_style(
-            'really-simple-slider-block-css',
+            'rather-simple-slider-block-css',
             plugins_url( 'build/style.css', __FILE__ ),
             null,
             filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
         );
         
         wp_register_script(
-            'really-simple-slider-block',
+            'rather-simple-slider-block',
             plugins_url( 'build/index.js', __FILE__ ),
             array( 'wp-blocks', 'wp-components', 'wp-data', 'wp-element', 'wp-i18n' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' )
         );
 
-        register_block_type( 'occ/really-simple-slider', array(
-            'editor_style'  => 'really-simple-slider-block-editor-css',
-            'editor_script' => 'really-simple-slider-block',
-            'style' => 'really-simple-slider-block-css',
+        register_block_type( 'occ/rather-simple-slider', array(
+            'editor_style'  => 'rather-simple-slider-block-editor-css',
+            'editor_script' => 'rather-simple-slider-block',
+            'style' => 'rather-simple-slider-block-css',
         ) );
 
-        wp_set_script_translations( 'really-simple-slider-block', 'really-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
+        wp_set_script_translations( 'rather-simple-slider-block', 'rather-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
 
     }
 
 }
 
-add_action( 'plugins_loaded', array ( Really_Simple_Slider::get_instance(), 'plugin_setup' ) );
+add_action( 'plugins_loaded', array ( Rather_Simple_Slider::get_instance(), 'plugin_setup' ) );

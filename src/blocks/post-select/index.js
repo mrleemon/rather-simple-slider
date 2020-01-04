@@ -18,14 +18,14 @@ const blockAttributes = {
 	},
 };
 
-export const name = 'occ/really-simple-slider';
+export const name = 'occ/rather-simple-slider';
 
 export const settings = {
-    title: __( 'Really Simple Slider', 'really-simple-slider' ),
-    description: __( 'Display a slider.', 'really-simple-slider' ),
+    title: __( 'Rather Simple Slider', 'rather-simple-slider' ),
+    description: __( 'Display a slider.', 'rather-simple-slider' ),
     icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="none" d="M0 0h24v24H0V0z" /><G><Path d="M20 4v12H8V4h12m0-2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 9.67l1.69 2.26 2.48-3.1L19 15H9zM2 6v14c0 1.1.9 2 2 2h14v-2H4V6H2z" /></G></SVG>,
     category: 'common',
-    keywords: [ __( 'images', 'really-simple-slider' ), __( 'photos', 'really-simple-slider' ) ],
+    keywords: [ __( 'images', 'rather-simple-slider' ), __( 'photos', 'rather-simple-slider' ) ],
     attributes: blockAttributes,
 
     edit: withSelect( ( select ) => {
@@ -41,16 +41,16 @@ export const settings = {
         };
 
         if ( ! props.posts ) {
-            return __( 'Loading...', 'really-simple-slider' );
+            return __( 'Loading...', 'rather-simple-slider' );
         }
 
         if ( props.posts.length === 0 ) {
-            return __( 'No sliders found', 'really-simple-slider' );
+            return __( 'No sliders found', 'rather-simple-slider' );
         }
 
         var options = [];
         options.push( {
-            label: __( 'Select a slider...', 'really-simple-slider' ),
+            label: __( 'Select a slider...', 'rather-simple-slider' ),
             value: ''
         } );
 
@@ -63,12 +63,12 @@ export const settings = {
 
         return (
             <Placeholder
-				key='really-simple-slider-block'
+				key='rather-simple-slider-block'
 				icon='images-alt2'
-				label={ __( 'Really Simple Slider', 'really-simple-slider' ) }
+				label={ __( 'Rather Simple Slider', 'rather-simple-slider' ) }
 				className={ className }>
                     <SelectControl
-                        label={ __( 'Select a slider:', 'really-simple-slider' ) }
+                        label={ __( 'Select a slider:', 'rather-simple-slider' ) }
                         value={ attributes.id }
                         options={ options }
                         onChange={ setID }

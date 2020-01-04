@@ -1,4 +1,4 @@
-=== Really Simple Slider ===
+=== Rather Simple Slider ===
 Contributors: leemon
 Tags: carousel, images, media
 Requires at least: 4.0

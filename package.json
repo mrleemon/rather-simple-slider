@@ -1,5 +1,5 @@
 {
-  "name": "really-simple-slider",
+  "name": "rather-simple-slider",
   "version": "1.0.0",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
@@ -28,6 +28,6 @@
     "start": "wp-scripts start",
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js",
-    "i18n": "po2json languages/really-simple-slider-es_ES.po languages/really-simple-slider-es_ES-really-simple-slider-block.json -f jed && po2json languages/really-simple-slider-ca.po languages/really-simple-slider-ca-really-simple-slider-block.json -f jed"
+    "i18n": "po2json languages/rather-simple-slider-es_ES.po languages/rather-simple-slider-es_ES-rather-simple-slider-block.json -f jed && po2json languages/rather-simple-slider-ca.po languages/rather-simple-slider-ca-rather-simple-slider-block.json -f jed"
   }
 }
