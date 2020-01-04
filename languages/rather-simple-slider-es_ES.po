@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Really Simple Slider\n"
-"POT-Creation-Date: 2020-01-03 22:25+0100\n"
-"PO-Revision-Date: 2020-01-03 23:23+0100\n"
+"Project-Id-Version: Rather Simple Slider\n"
+"POT-Creation-Date: 2020-01-04 10:26+0100\n"
+"PO-Revision-Date: 2020-01-04 10:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-WPHeader: really-simple-slider.php\n"
+"X-Poedit-WPHeader: rather-simple-slider.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -20,189 +20,189 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 
-#: really-simple-slider.php:134
+#: rather-simple-slider.php:134
 msgid "Sliders"
 msgstr "Sliders"
 
-#: really-simple-slider.php:135
+#: rather-simple-slider.php:135
 msgid "Slider"
 msgstr "Slider"
 
-#: really-simple-slider.php:136 really-simple-slider.php:137
+#: rather-simple-slider.php:136 rather-simple-slider.php:137
 msgid "Add New Slider"
 msgstr "Añadir nuevo slider"
 
-#: really-simple-slider.php:138
+#: rather-simple-slider.php:138
 msgid "Edit Slider"
 msgstr "Editar slider"
 
-#: really-simple-slider.php:139
+#: rather-simple-slider.php:139
 msgid "New Slider"
 msgstr "Nuevo slider"
 
-#: really-simple-slider.php:140
+#: rather-simple-slider.php:140
 msgid "View Slider"
 msgstr "Visualitza slider"
 
-#: really-simple-slider.php:141
+#: rather-simple-slider.php:141
 msgid "Search Sliders"
 msgstr "Buscar sliders"
 
-#: really-simple-slider.php:142
+#: rather-simple-slider.php:142
 msgid "No Sliders found"
 msgstr "No se han encontrado sliders"
 
-#: really-simple-slider.php:143
+#: rather-simple-slider.php:143
 msgid "No Sliders found in Trash"
 msgstr "No se han encontrado sliders"
 
-#: really-simple-slider.php:190 really-simple-slider.php:615
+#: rather-simple-slider.php:190 rather-simple-slider.php:615
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: really-simple-slider.php:191
+#: rather-simple-slider.php:191
 msgid "Options"
 msgstr "Opciones"
 
-#: really-simple-slider.php:192
+#: rather-simple-slider.php:192
 msgid "Slider items"
 msgstr "Elementos del slider"
 
-#: really-simple-slider.php:206
+#: rather-simple-slider.php:206
 msgid "Your Shortcode:"
 msgstr "Tu shortcode:"
 
-#: really-simple-slider.php:208
+#: rather-simple-slider.php:208
 msgid ""
 "Copy and paste this shortcode into your Post, Page or Custom Post editor."
 msgstr ""
 "Copia y pega este código cuando edites una entrada, una página u otro "
 "contenido."
 
-#: really-simple-slider.php:228
+#: rather-simple-slider.php:228
 msgid "Effect:"
 msgstr "Efecto:"
 
-#: really-simple-slider.php:230
+#: rather-simple-slider.php:230
 msgid "Fade"
 msgstr "Fundido"
 
-#: really-simple-slider.php:231
+#: rather-simple-slider.php:231
 msgid "Slide"
 msgstr "Desplazamiento"
 
-#: really-simple-slider.php:235
+#: rather-simple-slider.php:235
 msgid "Text Position:"
 msgstr "Posición del texto:"
 
-#: really-simple-slider.php:237
+#: rather-simple-slider.php:237
 msgid "Over the images"
 msgstr "Sobre las imágenes"
 
-#: really-simple-slider.php:238
+#: rather-simple-slider.php:238
 msgid "Under the images"
 msgstr "Bajo las imágenes"
 
-#: really-simple-slider.php:239
+#: rather-simple-slider.php:239
 msgid "Hidden behind the images"
 msgstr "Oculto detrás de las imágenes"
 
-#: really-simple-slider.php:243
+#: rather-simple-slider.php:243
 msgid "Show Navigation Arrows:"
 msgstr "Mostrar flechas de navegación:"
 
-#: really-simple-slider.php:248
+#: rather-simple-slider.php:248
 msgid "Automatic Playback:"
 msgstr "Reproducción automática:"
 
-#: really-simple-slider.php:293
+#: rather-simple-slider.php:293
 msgid "Delete item"
 msgstr "Eliminar elemento"
 
-#: really-simple-slider.php:293
+#: rather-simple-slider.php:293
 msgid "Delete"
 msgstr "Eliminar"
 
-#: really-simple-slider.php:313
+#: rather-simple-slider.php:313
 msgid "Add items to slider"
 msgstr "Añadir elementos al slider"
 
-#: really-simple-slider.php:313
+#: rather-simple-slider.php:313
 msgid "Add slider items"
 msgstr "Añadir elementos al slider"
 
-#: really-simple-slider.php:427
+#: rather-simple-slider.php:427
 msgid "text"
 msgstr "texto"
 
-#: really-simple-slider.php:428 src/blocks/post-select/index.js:28
+#: rather-simple-slider.php:428 src/blocks/post-select/index.js:28
 msgid "images"
 msgstr "imágenes"
 
-#: really-simple-slider.php:456
+#: rather-simple-slider.php:456
 msgid "previous"
 msgstr "anterior"
 
-#: really-simple-slider.php:458
+#: rather-simple-slider.php:458
 msgid "next"
 msgstr "siguiente"
 
-#: really-simple-slider.php:529
+#: rather-simple-slider.php:529
 msgid "Add a Slider"
 msgstr "Añadir un slider"
 
-#: really-simple-slider.php:530
+#: rather-simple-slider.php:530
 msgid "Add Slider"
 msgstr "Añadir slider"
 
-#: really-simple-slider.php:561
+#: rather-simple-slider.php:561
 msgid "Please select a Slider"
 msgstr "Por favor, selecciona un slider"
 
-#: really-simple-slider.php:575
+#: rather-simple-slider.php:575
 msgid "Add a slider"
 msgstr "Añadir un slider"
 
-#: really-simple-slider.php:576
+#: rather-simple-slider.php:576
 msgid "Select a slider to insert from the dropdown below:"
 msgstr "Selecciona un slider a insertar del siguiente desplegable:"
 
-#: really-simple-slider.php:581
+#: rather-simple-slider.php:581
 msgid "Select a slider"
 msgstr "Seleccionar un slider"
 
-#: really-simple-slider.php:598
+#: rather-simple-slider.php:598
 msgid "Insert Slider"
 msgstr "Insertar slider"
 
-#: really-simple-slider.php:599
+#: rather-simple-slider.php:599
 msgid "Close"
 msgstr "Cerrar"
 
-#: really-simple-slider.php:643
+#: rather-simple-slider.php:643
 msgid "Embed Media Item"
 msgstr "Insertar elemento multimedia"
 
-#: really-simple-slider.php:647
+#: rather-simple-slider.php:647
 msgid "URL"
 msgstr "URL"
 
-#: really-simple-slider.php:651
+#: rather-simple-slider.php:651
 msgid "If provided, this media item will be displayed instead of the image"
 msgstr ""
 "Si se proporciona, este elemento multimedia se mostrará en lugar de la imagen"
 
-#: really-simple-slider.php:654
+#: rather-simple-slider.php:654
 msgid "Width"
 msgstr "Ancho"
 
-#: really-simple-slider.php:660
+#: rather-simple-slider.php:660
 msgid "Height"
 msgstr "Altura"
 
 #. Plugin Name of the plugin/theme
 #: src/blocks/post-select/index.js:24 src/blocks/post-select/index.js:68
-msgid "Really Simple Slider"
+msgid "Rather Simple Slider"
 msgstr ""
 
 #: src/blocks/post-select/index.js:25
@@ -230,7 +230,7 @@ msgid "Select a slider:"
 msgstr "Selecciona un slider:"
 
 #. Description of the plugin/theme
-msgid "A simple slider"
+msgid "A really simple slider"
 msgstr ""
 
 #. Author of the plugin/theme
