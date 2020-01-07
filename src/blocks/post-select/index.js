@@ -30,7 +30,8 @@ export const settings = {
 
     edit: withSelect( ( select ) => {
         return {
-            posts: select( 'core' ).getEntityRecords( 'postType', 'slider', { per_page: -1 } )
+            posts: select( 'core' ).getEntityRecords( 'postType', 'slider', { per_page: -1, orderby: 'title',
+            order: 'asc', _fields: 'id,title' } )
         };
     } )
     ( props => {
