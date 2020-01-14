@@ -17,7 +17,8 @@
 
 .slider .slide,
 .slider .slider-switch,
-.slider .slider-arrow {
+.slider .slider-prev,
+.slider .slider-next {
     cursor: pointer;
 }
 
@@ -30,6 +31,21 @@
 .slider .slider-navigation {
     display: inline-block;
     margin-bottom: 20px;
+}
+
+.slider .slider-navigation .slider-prev,
+.slider .slider-navigation .slider-next {
+    display: inline-block;
+}
+
+.slider .slider-navigation .slider-prev::before {
+    content: '<';
+    padding-right: 5px;
+}
+
+.slider .slider-navigation .slider-next::after {
+    content: '>';
+    padding-left: 5px;
 }
 
 .slider .slide .slide-caption {

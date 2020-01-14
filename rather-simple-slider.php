@@ -453,9 +453,9 @@ class Rather_Simple_Slider {
 
             if ( $slider_navigation ) {
                 $html .= '<div class="slider-navigation">
-                        <span class="slider-prev slider-arrow">' . __( 'previous', 'rather-simple-slider' ) . '</span>
+                        <div class="slider-prev"><span class="slider-navigation-title">' . __( 'previous', 'rather-simple-slider' ) . '</span></div>
                         <span class="slider-navigation-separator"> | </span>
-                        <span class="slider-next slider-arrow">' . __( 'next', 'rather-simple-slider' ) . '</span>
+                        <div class="slider-next"><span class="slider-navigation-title">' . __( 'next', 'rather-simple-slider' ) . '</span></div>
                     </div>';
             }
 
