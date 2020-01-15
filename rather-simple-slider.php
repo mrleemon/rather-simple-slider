@@ -217,7 +217,7 @@ class Rather_Simple_Slider {
     function slider_options_meta_box() {
         global $post;
         $slider_fx = ( get_post_meta( $post->ID, '_rss_slider_fx', true ) ) ? get_post_meta( $post->ID, '_rss_slider_fx', true ) : 'fade';
-        $slider_text_position = ( get_post_meta( $post->ID, '_rss_slider_text_position', true ) ) ? get_post_meta( $post->ID, '_rss_slider_text_position', true ) : 'top';
+        $slider_text_position = ( get_post_meta( $post->ID, '_rss_slider_text_position', true ) ) ? get_post_meta( $post->ID, '_rss_slider_text_position', true ) : 'before';
         $slider_navigation = ( get_post_meta( $post->ID, '_rss_slider_navigation', true ) ) ? get_post_meta( $post->ID, '_rss_slider_navigation', true ) : '';
         $slider_auto = ( get_post_meta( $post->ID, '_rss_slider_auto', true ) ) ? get_post_meta( $post->ID, '_rss_slider_auto', true ) : '';
     ?>
@@ -232,16 +232,16 @@ class Rather_Simple_Slider {
         <div class="form-field">
         <label for="slider_text_position"><?php _e( 'Text Position:', 'rather-simple-slider' ); ?></label>
         <select id="slider_text_position" name="slider_text_position">
-        <option value="top" <?php selected( $slider_text_position, 'top' ); ?>><?php _e( 'Over the images', 'rather-simple-slider' ); ?></option>
-        <option value="bottom" <?php selected( $slider_text_position, 'bottom' ); ?>><?php _e( 'Under the images', 'rather-simple-slider' ); ?></option>
+        <option value="before" <?php selected( $slider_text_position, 'before' ); ?>><?php _e( 'Before the images', 'rather-simple-slider' ); ?></option>
+        <option value="after" <?php selected( $slider_text_position, 'after' ); ?>><?php _e( 'After the images', 'rather-simple-slider' ); ?></option>
         <option value="hidden" <?php selected( $slider_text_position, 'hidden' ); ?>><?php _e( 'Hidden behind the images', 'rather-simple-slider' ); ?></option>
         </select>
         </div>
         <div class="form-field">
         <label for="slider_navigation"><?php _e( 'Navigation Arrows:', 'rather-simple-slider' ); ?>
         <select id="slider_navigation" name="slider_navigation">
-        <option value="top" <?php selected( $slider_navigation, 'top' ); ?>><?php _e( 'Over the images', 'rather-simple-slider' ); ?></option>
-        <option value="bottom" <?php selected( $slider_navigation, 'bottom' ); ?>><?php _e( 'Under the images', 'rather-simple-slider' ); ?></option>
+        <option value="before" <?php selected( $slider_navigation, 'before' ); ?>><?php _e( 'Before the images', 'rather-simple-slider' ); ?></option>
+        <option value="after" <?php selected( $slider_navigation, 'after' ); ?>><?php _e( 'After the images', 'rather-simple-slider' ); ?></option>
         <option value="hidden" <?php selected( $slider_navigation, 'hidden' ); ?>><?php _e( 'Hidden', 'rather-simple-slider' ); ?></option>
         </select>
         </div>
@@ -346,10 +346,10 @@ class Rather_Simple_Slider {
             $slider_fx = isset( $_POST['slider_fx'] ) ? sanitize_text_field( $_POST['slider_fx'] ) : 'fade';
             update_post_meta( $post_id, '_rss_slider_fx', $slider_fx );
 
-            $slider_text_position = isset( $_POST['slider_text_position'] ) ? sanitize_text_field( $_POST['slider_text_position'] ) : 'top';
+            $slider_text_position = isset( $_POST['slider_text_position'] ) ? sanitize_text_field( $_POST['slider_text_position'] ) : 'before';
             update_post_meta( $post_id, '_rss_slider_text_position', $slider_text_position );
 
-            $slider_navigation = isset( $_POST['slider_navigation'] ) ? sanitize_text_field( $_POST['slider_navigation'] ) : 'top';
+            $slider_navigation = isset( $_POST['slider_navigation'] ) ? sanitize_text_field( $_POST['slider_navigation'] ) : 'before';
             update_post_meta( $post_id, '_rss_slider_navigation', $slider_navigation );
 
             $slider_auto = isset( $_POST['slider_auto'] ) ? $_POST['slider_auto'] : '';
@@ -407,8 +407,8 @@ class Rather_Simple_Slider {
         $slider = get_post( $id );
         $slider_text = apply_filters( 'the_content', $slider->post_content );
         $slider_fx = ( get_post_meta( $id, '_rss_slider_fx', true ) ) ? get_post_meta( $id, '_rss_slider_fx', true ) : 'fade';
-        $slider_text_position = ( get_post_meta( $id, '_rss_slider_text_position', true ) ) ? get_post_meta( $id, '_rss_slider_text_position', true ) : 'top';
-        $slider_navigation = ( get_post_meta( $id, '_rss_slider_navigation', true ) ) ? get_post_meta( $id, '_rss_slider_navigation', true ) : 'top';
+        $slider_text_position = ( get_post_meta( $id, '_rss_slider_text_position', true ) ) ? get_post_meta( $id, '_rss_slider_text_position', true ) : 'before';
+        $slider_navigation = ( get_post_meta( $id, '_rss_slider_navigation', true ) ) ? get_post_meta( $id, '_rss_slider_navigation', true ) : 'before';
         $slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? 8000 : 0;
         $slider_items = get_post_meta( $id, '_rss_slider_items', true );
         
@@ -431,7 +431,7 @@ class Rather_Simple_Slider {
                         </div>';
             }
 
-            if ( $slider_text_position === 'top' ) {
+            if ( $slider_text_position === 'before' ) {
                 $html .= '<div class="slider-text">
                         ' . $slider_text . '
                         </div>';
@@ -450,7 +450,7 @@ class Rather_Simple_Slider {
                 'nextArrow' => sprintf( '#slider-%1$d .slider-navigation .slider-next, #slider-%2$d .slide', $id, $id ),
             );
 
-            if ( $slider_navigation === 'top' ) {
+            if ( $slider_navigation === 'before' ) {
                 $html .= '<div class="slider-navigation">
                         <div class="slider-prev"><span class="slider-navigation-title">' . __( 'previous', 'rather-simple-slider' ) . '</span></div>
                         <span class="slider-navigation-separator"> | </span>
@@ -489,7 +489,7 @@ class Rather_Simple_Slider {
 
             $html .= '</div>';
 
-            if ( $slider_navigation === 'bottom' ) {
+            if ( $slider_navigation === 'after' ) {
                 $html .= '<div class="slider-navigation">
                         <div class="slider-prev"><span class="slider-navigation-title">' . __( 'previous', 'rather-simple-slider' ) . '</span></div>
                         <span class="slider-navigation-separator"> | </span>
@@ -497,7 +497,7 @@ class Rather_Simple_Slider {
                     </div>';
             }
 
-            if ( $slider_text_position === 'bottom' ) {
+            if ( $slider_text_position === 'after' ) {
                 $html .= '<div class="slider-text">
                         ' . $slider_text . '
                         </div>';

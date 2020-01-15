@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Rather Simple Slider\n"
-"POT-Creation-Date: 2020-01-15 00:51+0100\n"
-"PO-Revision-Date: 2020-01-15 00:51+0100\n"
+"POT-Creation-Date: 2020-01-15 10:45+0100\n"
+"PO-Revision-Date: 2020-01-15 10:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -96,12 +96,12 @@ msgid "Text Position:"
 msgstr "Posición del texto:"
 
 #: rather-simple-slider.php:235 rather-simple-slider.php:243
-msgid "Over the images"
-msgstr "Sobre las imágenes"
+msgid "Before the images"
+msgstr "Antes de las imágenes"
 
 #: rather-simple-slider.php:236 rather-simple-slider.php:244
-msgid "Under the images"
-msgstr "Bajo las imágenes"
+msgid "After the images"
+msgstr "Después de las imágenes"
 
 #: rather-simple-slider.php:237
 msgid "Hidden behind the images"
