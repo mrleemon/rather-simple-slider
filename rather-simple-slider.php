@@ -163,6 +163,7 @@ class Rather_Simple_Slider {
         
     }
 
+
     /*
     * Removes media buttons from slider post type.
     */
@@ -185,7 +186,6 @@ class Rather_Simple_Slider {
     /*
     * add_slider_meta_boxes
     */
-
     function add_slider_meta_boxes() {
         add_meta_box( 'slider-shortcode', __( 'Shortcode', 'rather-simple-slider' ), array( $this , 'slider_shortcode_meta_box' ), 'slider', 'side', 'default' );
         add_meta_box( 'slider-options', __( 'Options', 'rather-simple-slider' ), array( $this , 'slider_options_meta_box' ), 'slider', 'side', 'default' );
@@ -196,7 +196,6 @@ class Rather_Simple_Slider {
     /*
     * slider_shortcode_meta_box
     */
-  
     function slider_shortcode_meta_box() {
         global $post;
         $shortcode = '[slider id="' . $post->ID . '"]';
@@ -215,7 +214,6 @@ class Rather_Simple_Slider {
     /*
     * slider_options_meta_box
     */
-  
     function slider_options_meta_box() {
         global $post;
         $slider_fx = ( get_post_meta( $post->ID, '_rss_slider_fx', true ) ) ? get_post_meta( $post->ID, '_rss_slider_fx', true ) : 'fade';
@@ -240,9 +238,12 @@ class Rather_Simple_Slider {
         </select>
         </div>
         <div class="form-field">
-        <label for="slider_navigation"><?php _e( 'Show Navigation Arrows:', 'rather-simple-slider' ); ?>
-        <input type="checkbox" id="slider_navigation" name="slider_navigation" value="true" <?php checked( $slider_navigation, 'true' ); ?> />
-        </label>
+        <label for="slider_navigation"><?php _e( 'Navigation Arrows:', 'rather-simple-slider' ); ?>
+        <select id="slider_navigation" name="slider_navigation">
+        <option value="top" <?php selected( $slider_navigation, 'top' ); ?>><?php _e( 'Over the images', 'rather-simple-slider' ); ?></option>
+        <option value="bottom" <?php selected( $slider_navigation, 'bottom' ); ?>><?php _e( 'Under the images', 'rather-simple-slider' ); ?></option>
+        <option value="hidden" <?php selected( $slider_navigation, 'hidden' ); ?>><?php _e( 'Hidden', 'rather-simple-slider' ); ?></option>
+        </select>
         </div>
         <div class="form-field">
         <label for="slider_auto"><?php _e( 'Automatic Playback:', 'rather-simple-slider' ); ?>
@@ -257,7 +258,6 @@ class Rather_Simple_Slider {
     /*
     * slider_items_meta_box
     */
-  
     function slider_items_meta_box() {
         global $post;
     ?>
@@ -319,7 +319,6 @@ class Rather_Simple_Slider {
     /*
     * save_slider
     */
- 
     function save_slider( $post_id ) {
         // verify nonce
         if ( isset( $_POST['metabox_nonce'] ) && !wp_verify_nonce( $_POST['metabox_nonce'], basename( __FILE__ ) ) ) {
@@ -350,7 +349,7 @@ class Rather_Simple_Slider {
             $slider_text_position = isset( $_POST['slider_text_position'] ) ? sanitize_text_field( $_POST['slider_text_position'] ) : 'top';
             update_post_meta( $post_id, '_rss_slider_text_position', $slider_text_position );
 
-            $slider_navigation = isset( $_POST['slider_navigation'] ) ? $_POST['slider_navigation'] : '';
+            $slider_navigation = isset( $_POST['slider_navigation'] ) ? sanitize_text_field( $_POST['slider_navigation'] ) : 'top';
             update_post_meta( $post_id, '_rss_slider_navigation', $slider_navigation );
 
             $slider_auto = isset( $_POST['slider_auto'] ) ? $_POST['slider_auto'] : '';
@@ -409,7 +408,7 @@ class Rather_Simple_Slider {
         $slider_text = apply_filters( 'the_content', $slider->post_content );
         $slider_fx = ( get_post_meta( $id, '_rss_slider_fx', true ) ) ? get_post_meta( $id, '_rss_slider_fx', true ) : 'fade';
         $slider_text_position = ( get_post_meta( $id, '_rss_slider_text_position', true ) ) ? get_post_meta( $id, '_rss_slider_text_position', true ) : 'top';
-        $slider_navigation = ( get_post_meta( $id, '_rss_slider_navigation', true ) ) ? true : '';
+        $slider_navigation = ( get_post_meta( $id, '_rss_slider_navigation', true ) ) ? get_post_meta( $id, '_rss_slider_navigation', true ) : 'top';
         $slider_auto = ( get_post_meta( $id, '_rss_slider_auto', true ) ) ? 8000 : 0;
         $slider_items = get_post_meta( $id, '_rss_slider_items', true );
         
@@ -451,7 +450,7 @@ class Rather_Simple_Slider {
                 'nextArrow' => sprintf( '#slider-%1$d .slider-navigation .slider-next, #slider-%2$d .slide', $id, $id ),
             );
 
-            if ( $slider_navigation ) {
+            if ( $slider_navigation === 'top' ) {
                 $html .= '<div class="slider-navigation">
                         <div class="slider-prev"><span class="slider-navigation-title">' . __( 'previous', 'rather-simple-slider' ) . '</span></div>
                         <span class="slider-navigation-separator"> | </span>
@@ -490,6 +489,14 @@ class Rather_Simple_Slider {
 
             $html .= '</div>';
 
+            if ( $slider_navigation === 'bottom' ) {
+                $html .= '<div class="slider-navigation">
+                        <div class="slider-prev"><span class="slider-navigation-title">' . __( 'previous', 'rather-simple-slider' ) . '</span></div>
+                        <span class="slider-navigation-separator"> | </span>
+                        <div class="slider-next"><span class="slider-navigation-title">' . __( 'next', 'rather-simple-slider' ) . '</span></div>
+                    </div>';
+            }
+
             if ( $slider_text_position === 'bottom' ) {
                 $html .= '<div class="slider-text">
                         ' . $slider_text . '
@@ -501,7 +508,9 @@ class Rather_Simple_Slider {
                       <!-- End slider markup -->';
     
         }
+
         return $html;
+
     }
 
     
@@ -510,7 +519,7 @@ class Rather_Simple_Slider {
      *
      * @return void
      */
-     public function display_button() {
+    public function display_button() {
         // Print the button's HTML and CSS
         ?>
             <style type="text/css">
@@ -606,7 +615,6 @@ class Rather_Simple_Slider {
     /*
     * slider_columns
     */
-
     function slider_columns( $columns ) {
         $new = array();
         foreach( $columns as $key => $value ) {
@@ -623,7 +631,6 @@ class Rather_Simple_Slider {
     /*
     * slider_custom_column
     */
-
     function slider_custom_column( $column, $post_id ) {
         switch ( $column ) {
             case 'shortcode':

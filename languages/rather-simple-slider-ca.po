@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Rather Simple Slider\n"
-"POT-Creation-Date: 2020-01-04 10:27+0100\n"
-"PO-Revision-Date: 2020-01-04 10:27+0100\n"
+"POT-Creation-Date: 2020-01-15 00:50+0100\n"
+"PO-Revision-Date: 2020-01-15 00:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -56,7 +56,7 @@ msgstr "No s'han trobat sliders"
 msgid "No Sliders found in Trash"
 msgstr "No s'han trobat sliders"
 
-#: rather-simple-slider.php:190 rather-simple-slider.php:615
+#: rather-simple-slider.php:190 rather-simple-slider.php:623
 msgid "Shortcode"
 msgstr "Shortcode"
 
@@ -68,50 +68,54 @@ msgstr "Opcions"
 msgid "Slider items"
 msgstr "Elements del slider"
 
-#: rather-simple-slider.php:206
+#: rather-simple-slider.php:205
 msgid "Your Shortcode:"
 msgstr "El vostre shortcode:"
 
-#: rather-simple-slider.php:208
+#: rather-simple-slider.php:207
 msgid ""
 "Copy and paste this shortcode into your Post, Page or Custom Post editor."
 msgstr ""
 "Copieu i enganxeu aquest codi quan editeu una entrada, una pàgina o un altre "
 "contingut."
 
-#: rather-simple-slider.php:228
+#: rather-simple-slider.php:226
 msgid "Effect:"
 msgstr "Efecte:"
 
-#: rather-simple-slider.php:230
+#: rather-simple-slider.php:228
 msgid "Fade"
 msgstr "Fade"
 
-#: rather-simple-slider.php:231
+#: rather-simple-slider.php:229
 msgid "Slide"
 msgstr "Desplaçament"
 
-#: rather-simple-slider.php:235
+#: rather-simple-slider.php:233
 msgid "Text Position:"
 msgstr "Posició del text:"
 
-#: rather-simple-slider.php:237
+#: rather-simple-slider.php:235 rather-simple-slider.php:243
 msgid "Over the images"
 msgstr "Sobre les imatges"
 
-#: rather-simple-slider.php:238
+#: rather-simple-slider.php:236 rather-simple-slider.php:244
 msgid "Under the images"
 msgstr "Sota les imatges"
 
-#: rather-simple-slider.php:239
+#: rather-simple-slider.php:237
 msgid "Hidden behind the images"
 msgstr "Ocult darrere de les imatges"
 
-#: rather-simple-slider.php:243
-msgid "Show Navigation Arrows:"
-msgstr "Mostra les fletxes de navegació:"
+#: rather-simple-slider.php:241
+msgid "Navigation Arrows:"
+msgstr "Fletxes de navegació:"
 
-#: rather-simple-slider.php:248
+#: rather-simple-slider.php:245
+msgid "Hidden"
+msgstr "Ocultes"
+
+#: rather-simple-slider.php:249
 msgid "Automatic Playback:"
 msgstr "Reproducció automàtica:"
 
@@ -131,78 +135,78 @@ msgstr "Afegeix elements al slider"
 msgid "Add slider items"
 msgstr "Afegeix elements al slider"
 
-#: rather-simple-slider.php:427
+#: rather-simple-slider.php:426
 msgid "text"
 msgstr "text"
 
-#: rather-simple-slider.php:428 src/blocks/post-select/index.js:28
+#: rather-simple-slider.php:427 src/blocks/post-select/index.js:28
 msgid "images"
 msgstr "imatges"
 
-#: rather-simple-slider.php:456
+#: rather-simple-slider.php:455 rather-simple-slider.php:494
 msgid "previous"
 msgstr "anterior"
 
-#: rather-simple-slider.php:458
+#: rather-simple-slider.php:457 rather-simple-slider.php:496
 msgid "next"
 msgstr "següent"
 
-#: rather-simple-slider.php:529
+#: rather-simple-slider.php:538
 msgid "Add a Slider"
 msgstr "Afegeix un slider"
 
-#: rather-simple-slider.php:530
+#: rather-simple-slider.php:539
 msgid "Add Slider"
 msgstr "Afegeix slider"
 
-#: rather-simple-slider.php:561
+#: rather-simple-slider.php:570
 msgid "Please select a Slider"
 msgstr "Seleccioneu un slider"
 
-#: rather-simple-slider.php:575
+#: rather-simple-slider.php:584
 msgid "Add a slider"
 msgstr "Afegeix un slider"
 
-#: rather-simple-slider.php:576
+#: rather-simple-slider.php:585
 msgid "Select a slider to insert from the dropdown below:"
 msgstr "Seleccioneu un slider a inserir del següent desplegable:"
 
-#: rather-simple-slider.php:581
+#: rather-simple-slider.php:590
 msgid "Select a slider"
 msgstr "Selecciona un slider"
 
-#: rather-simple-slider.php:598
+#: rather-simple-slider.php:607
 msgid "Insert Slider"
 msgstr "Insereix slider"
 
-#: rather-simple-slider.php:599
+#: rather-simple-slider.php:608
 msgid "Close"
 msgstr "Tanca"
 
-#: rather-simple-slider.php:643
+#: rather-simple-slider.php:650
 msgid "Embed Media Item"
 msgstr "Incrusta element multimèdia"
 
-#: rather-simple-slider.php:647
+#: rather-simple-slider.php:654
 msgid "URL"
 msgstr "URL"
 
-#: rather-simple-slider.php:651
+#: rather-simple-slider.php:658
 msgid "If provided, this media item will be displayed instead of the image"
 msgstr ""
 "Si s'ha proporcionat, es mostrarà aquest element multimèdia en lloc de la "
 "imatge"
 
-#: rather-simple-slider.php:654
+#: rather-simple-slider.php:661
 msgid "Width"
 msgstr "Amplada"
 
-#: rather-simple-slider.php:660
+#: rather-simple-slider.php:667
 msgid "Height"
 msgstr "Alçada"
 
 #. Plugin Name of the plugin/theme
-#: src/blocks/post-select/index.js:24 src/blocks/post-select/index.js:68
+#: src/blocks/post-select/index.js:24 src/blocks/post-select/index.js:69
 msgid "Rather Simple Slider"
 msgstr ""
 
@@ -214,19 +218,19 @@ msgstr "Mostra un slider."
 msgid "photos"
 msgstr "fotos"
 
-#: src/blocks/post-select/index.js:44
+#: src/blocks/post-select/index.js:45
 msgid "Loading..."
 msgstr "Carregant…"
 
-#: src/blocks/post-select/index.js:48
+#: src/blocks/post-select/index.js:49
 msgid "No sliders found"
 msgstr "No s'ha trobat cap slider"
 
-#: src/blocks/post-select/index.js:53
+#: src/blocks/post-select/index.js:54
 msgid "Select a slider..."
 msgstr "Seleccioneu un slider..."
 
-#: src/blocks/post-select/index.js:71
+#: src/blocks/post-select/index.js:72
 msgid "Select a slider:"
 msgstr "Seleccioneu un slider:"
 
