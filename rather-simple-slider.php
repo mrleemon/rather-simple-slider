@@ -592,8 +592,8 @@ class Rather_Simple_Slider {
                             $args = array(
                                 'post_type'   => 'slider',
                                 'numberposts' => -1,
-                                'orderby'     => 'ID',
-                                'order'       => 'DESC'
+                                'orderby'     => 'title',
+                                'order'       => 'ASC'
                             );
                             $sliders = get_posts( $args );
                         ?>
