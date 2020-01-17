@@ -437,6 +437,14 @@ class Rather_Simple_Slider {
                         </div>';
             }
 
+            if ( $slider_navigation === 'before' ) {
+                $html .= '<div class="slider-navigation">
+                        <div class="slider-prev"><span class="slider-navigation-title">' . __( 'previous', 'rather-simple-slider' ) . '</span></div>
+                        <span class="slider-navigation-separator"> | </span>
+                        <div class="slider-next"><span class="slider-navigation-title">' . __( 'next', 'rather-simple-slider' ) . '</span></div>
+                    </div>';
+            }
+
             $attrs = array(
                 'fade' => ( $slider_fx === 'fade' ) ? true : false,
                 'autoplay' => $slider_auto,
@@ -449,14 +457,6 @@ class Rather_Simple_Slider {
                 'prevArrow' => sprintf( '#slider-%d .slider-navigation .slider-prev', $id ),
                 'nextArrow' => sprintf( '#slider-%1$d .slider-navigation .slider-next, #slider-%2$d .slide', $id, $id ),
             );
-
-            if ( $slider_navigation === 'before' ) {
-                $html .= '<div class="slider-navigation">
-                        <div class="slider-prev"><span class="slider-navigation-title">' . __( 'previous', 'rather-simple-slider' ) . '</span></div>
-                        <span class="slider-navigation-separator"> | </span>
-                        <div class="slider-next"><span class="slider-navigation-title">' . __( 'next', 'rather-simple-slider' ) . '</span></div>
-                    </div>';
-            }
 
             $html .= "<div class='slider-items'";
             
