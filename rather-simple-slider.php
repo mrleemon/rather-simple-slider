@@ -232,16 +232,16 @@ class Rather_Simple_Slider {
         <div class="form-field">
         <label for="slider_text_position"><?php _e( 'Text Position:', 'rather-simple-slider' ); ?></label>
         <select id="slider_text_position" name="slider_text_position">
-        <option value="before" <?php selected( $slider_text_position, 'before' ); ?>><?php _e( 'Before the images', 'rather-simple-slider' ); ?></option>
-        <option value="after" <?php selected( $slider_text_position, 'after' ); ?>><?php _e( 'After the images', 'rather-simple-slider' ); ?></option>
-        <option value="hidden" <?php selected( $slider_text_position, 'hidden' ); ?>><?php _e( 'Hidden behind the images', 'rather-simple-slider' ); ?></option>
+        <option value="before" <?php selected( $slider_text_position, 'before' ); ?>><?php _e( 'Before the slider', 'rather-simple-slider' ); ?></option>
+        <option value="after" <?php selected( $slider_text_position, 'after' ); ?>><?php _e( 'After the slider', 'rather-simple-slider' ); ?></option>
+        <option value="hidden" <?php selected( $slider_text_position, 'hidden' ); ?>><?php _e( 'Hidden behind the slider', 'rather-simple-slider' ); ?></option>
         </select>
         </div>
         <div class="form-field">
         <label for="slider_navigation"><?php _e( 'Navigation Arrows:', 'rather-simple-slider' ); ?>
         <select id="slider_navigation" name="slider_navigation">
-        <option value="before" <?php selected( $slider_navigation, 'before' ); ?>><?php _e( 'Before the images', 'rather-simple-slider' ); ?></option>
-        <option value="after" <?php selected( $slider_navigation, 'after' ); ?>><?php _e( 'After the images', 'rather-simple-slider' ); ?></option>
+        <option value="before" <?php selected( $slider_navigation, 'before' ); ?>><?php _e( 'Before the slider', 'rather-simple-slider' ); ?></option>
+        <option value="after" <?php selected( $slider_navigation, 'after' ); ?>><?php _e( 'After the slider', 'rather-simple-slider' ); ?></option>
         <option value="hidden" <?php selected( $slider_navigation, 'hidden' ); ?>><?php _e( 'Hidden', 'rather-simple-slider' ); ?></option>
         </select>
         </div>
