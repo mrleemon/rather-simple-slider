@@ -13,9 +13,9 @@ const { __ } = wp.i18n;
 
 const blockAttributes = {
     id: {
-		type: 'integer',
-		default: 0,
-	},
+        type: 'integer',
+        default: 0,
+    },
 };
 
 export const name = 'occ/rather-simple-slider';
@@ -64,10 +64,10 @@ export const settings = {
 
         return (
             <Placeholder
-				key='rather-simple-slider-block'
-				icon='images-alt2'
-				label={ __( 'Rather Simple Slider', 'rather-simple-slider' ) }
-				className={ className }>
+                key='rather-simple-slider-block'
+                icon='images-alt2'
+                label={ __( 'Rather Simple Slider', 'rather-simple-slider' ) }
+                className={ className }>
                     <SelectControl
                         label={ __( 'Select a slider:', 'rather-simple-slider' ) }
                         value={ attributes.id }

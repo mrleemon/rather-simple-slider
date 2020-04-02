@@ -6,6 +6,20 @@ Plugin URI:
 Author: Oscar Ciutat
 Author URI: http://oscarciutat.com/code/
 Description: A really simple slider
+License: GPLv2 or later
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License, version 2, as 
+  published by the Free Software Foundation.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 class Rather_Simple_Slider {
@@ -93,7 +107,10 @@ class Rather_Simple_Slider {
 
 
     /**
-     * load_language
+     * Loads Language
+     *
+     * @since 1.0
+     *
      */
     public function load_language() {
         load_plugin_textdomain( 'rather-simple-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
@@ -104,10 +121,10 @@ class Rather_Simple_Slider {
      * enqueue_scripts
      */
     function enqueue_scripts() {
-        // enqueue styles
+        // Enqueue styles
         wp_enqueue_style( 'slick-css', plugins_url( '/assets/css/slick.css', __FILE__ ) );
         wp_enqueue_style( 'rather-simple-slider-css', plugins_url( '/style.css', __FILE__ ), array( 'dashicons' ) );
-        // enqueue scripts
+        // Enqueue scripts
         wp_enqueue_script( 'slick', plugins_url( '/assets/js/slick.min.js', __FILE__ ), array( 'jquery' ), false );
         wp_enqueue_script( 'rather-simple-slider-frontend', plugins_url( '/assets/js/frontend.js', __FILE__ ), array( 'jquery', 'slick' ), false );
     }
@@ -122,7 +139,7 @@ class Rather_Simple_Slider {
         wp_enqueue_script( 'gallery-script', plugins_url( '/assets/js/slider-gallery.js', __FILE__ ), array( 'jquery' ), false, true );
     }
 
-        
+    
     /*
      * register_post_type
      *
