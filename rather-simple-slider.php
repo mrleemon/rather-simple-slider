@@ -237,6 +237,7 @@ class Rather_Simple_Slider {
         $slider_text_position = ( get_post_meta( $post->ID, '_rss_slider_text_position', true ) ) ? get_post_meta( $post->ID, '_rss_slider_text_position', true ) : 'before';
         $slider_navigation = ( get_post_meta( $post->ID, '_rss_slider_navigation', true ) ) ? get_post_meta( $post->ID, '_rss_slider_navigation', true ) : '';
         $slider_auto = ( get_post_meta( $post->ID, '_rss_slider_auto', true ) ) ? get_post_meta( $post->ID, '_rss_slider_auto', true ) : '';
+        wp_nonce_field( basename( __FILE__ ), 'rss_metabox_nonce' );
     ?>
         <div class="form-wrap">
         <div class="form-field">
@@ -277,6 +278,7 @@ class Rather_Simple_Slider {
     */
     function slider_items_meta_box() {
         global $post;
+        wp_nonce_field( basename( __FILE__ ), 'rss_metabox_nonce' );
     ?>
         <div id="slider_images_container">
             <ul class="slider_images">
@@ -338,7 +340,7 @@ class Rather_Simple_Slider {
     */
     function save_slider( $post_id ) {
         // verify nonce
-        if ( isset( $_POST['metabox_nonce'] ) && !wp_verify_nonce( $_POST['metabox_nonce'], basename( __FILE__ ) ) ) {
+        if ( !isset( $_POST['rss_metabox_nonce'] ) || !wp_verify_nonce( $_POST['rss_metabox_nonce'], basename( __FILE__ ) ) ) {
             return $post_id;
         }
     
