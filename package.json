@@ -5,15 +5,15 @@
   "main": "build/index.js",
   "dependencies": {
     "classnames": "2.2.6",
-    "npm-check-updates": "^4.1.2"
+    "npm-check-updates": "^6.0.1"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^8.0.0",
-    "autoprefixer": "^9.7.6",
-    "css-loader": "^3.5.2",
+    "@wordpress/scripts": "^10.0.0",
+    "autoprefixer": "^9.8.0",
+    "css-loader": "^3.5.3",
     "ignore-emit-webpack-plugin": "^2.0.2",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "path": "^0.12.7",
     "po2json": "^1.0.0-beta-2",
     "postcss-loader": "^3.0.0",
