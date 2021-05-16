@@ -3,7 +3,7 @@
  */
 const { registerBlockType } = wp.blocks;
 const { G, Path, SVG, Placeholder, SelectControl } = wp.components;
-const { withSelect } = wp.data;
+const { useSelect } = wp.data;
 const { RawHTML } = wp.element;
 const { __ } = wp.i18n;
 
@@ -28,24 +28,23 @@ export const settings = {
     keywords: [ __( 'images', 'rather-simple-slider' ), __( 'photos', 'rather-simple-slider' ) ],
     attributes: blockAttributes,
 
-    edit: withSelect( ( select ) => {
-        return {
-            posts: select( 'core' ).getEntityRecords( 'postType', 'slider', { per_page: -1, orderby: 'title',
-            order: 'asc', _fields: 'id,title' } )
-        };
-    } )
-    ( props => {
+    edit: ( props => {
         const { attributes, className } = props;
+
+        const posts = useSelect(
+            ( select ) => select( 'core' ).getEntityRecords( 'postType', 'slider', { per_page: -1, orderby: 'title', order: 'asc', _fields: 'id,title' } ),
+            []
+        );
 
         const setID = value => {
             props.setAttributes( { id: Number( value ) } );
         };
 
-        if ( ! props.posts ) {
+        if ( ! posts ) {
             return __( 'Loading...', 'rather-simple-slider' );
         }
 
-        if ( props.posts.length === 0 ) {
+        if ( posts.length === 0 ) {
             return __( 'No sliders found', 'rather-simple-slider' );
         }
 
@@ -55,10 +54,10 @@ export const settings = {
             value: ''
         } );
 
-        for ( var i = 0; i < props.posts.length; i++ ) {
+        for ( var i = 0; i < posts.length; i++ ) {
             options.push( {
-                label: props.posts[i].title.raw,
-                value: props.posts[i].id
+                label: posts[i].title.raw,
+                value: posts[i].id
             } );
         }
 
