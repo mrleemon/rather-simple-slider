@@ -36,7 +36,6 @@ class Rather_Simple_Slider {
      */
     protected static $instance = null;
 
-
     /**
      * Access this plugin’s working instance
      *
@@ -52,7 +51,6 @@ class Rather_Simple_Slider {
         return self::$instance;
 
     }
-
     
     /**
      * Used for regular plugin work.
@@ -90,7 +88,6 @@ class Rather_Simple_Slider {
         add_shortcode( 'slider', array( $this, 'shortcode_slider' ) );
     
     }
-
     
     /**
      * Constructor. Intentionally left empty and public.
@@ -100,15 +97,13 @@ class Rather_Simple_Slider {
      */
     public function __construct() {}
     
-    
-     /**
+    /**
      * Includes required core files used in admin and on the frontend.
      *
      * @since 1.0
      *
      */
     protected function includes() {}
-
 
     /**
      * Loads Language
@@ -119,7 +114,6 @@ class Rather_Simple_Slider {
     public function load_language() {
         load_plugin_textdomain( 'rather-simple-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
-
     
     /**
      * enqueue_scripts
@@ -133,7 +127,6 @@ class Rather_Simple_Slider {
         wp_enqueue_script( 'rather-simple-slider-frontend', plugins_url( '/assets/js/frontend.js', __FILE__ ), array( 'jquery', 'slick' ), false );
     }
 
-
     /**
      * admin_enqueue_scripts
      */
@@ -142,9 +135,8 @@ class Rather_Simple_Slider {
         wp_enqueue_style( 'gallery-css', plugins_url( '/assets/css/slider-gallery.css', __FILE__ ) );
         wp_enqueue_script( 'gallery-script', plugins_url( '/assets/js/slider-gallery.js', __FILE__ ), array( 'jquery' ), false, true );
     }
-
     
-    /*
+    /**
      * register_post_type
      *
      * @since 1.0
@@ -184,10 +176,9 @@ class Rather_Simple_Slider {
         
     }
 
-
-    /*
-    * Removes media buttons from slider post type.
-    */
+    /**
+     * Removes media buttons from slider post type.
+     */
     function slider_editor_settings( $settings ) {
         $current_screen = get_current_screen();
 
@@ -204,19 +195,18 @@ class Rather_Simple_Slider {
         return $settings;
     }
 
-    /*
-    * add_slider_meta_boxes
-    */
+    /**
+     * add_slider_meta_boxes
+     */
     function add_slider_meta_boxes() {
         add_meta_box( 'slider-shortcode', __( 'Shortcode', 'rather-simple-slider' ), array( $this , 'slider_shortcode_meta_box' ), 'slider', 'side', 'default' );
         add_meta_box( 'slider-options', __( 'Options', 'rather-simple-slider' ), array( $this , 'slider_options_meta_box' ), 'slider', 'side', 'default' );
         add_meta_box( 'slider-items', __( 'Slider items', 'rather-simple-slider' ), array( $this , 'slider_items_meta_box' ), 'slider', 'normal', 'default' );
     }
 
-
-    /*
-    * slider_shortcode_meta_box
-    */
+    /**
+     * slider_shortcode_meta_box
+     */
     function slider_shortcode_meta_box() {
         global $post;
         $shortcode = '[slider id="' . $post->ID . '"]';
@@ -230,11 +220,10 @@ class Rather_Simple_Slider {
         </div>
     <?php
     }
-
     
-    /*
-    * slider_options_meta_box
-    */
+    /**
+     * slider_options_meta_box
+     */
     function slider_options_meta_box() {
         global $post;
         $slider_fx = ( get_post_meta( $post->ID, '_rss_slider_fx', true ) ) ? get_post_meta( $post->ID, '_rss_slider_fx', true ) : 'fade';
@@ -275,11 +264,10 @@ class Rather_Simple_Slider {
         </div>
     <?php
     }
-
     
-    /*
-    * slider_items_meta_box
-    */
+    /**
+     * slider_items_meta_box
+     */
     function slider_items_meta_box() {
         global $post;
         wp_nonce_field( basename( __FILE__ ), 'rss_metabox_nonce' );
@@ -338,10 +326,9 @@ class Rather_Simple_Slider {
         <?php
     }
 
-
-    /*
-    * save_slider
-    */
+    /**
+     * save_slider
+     */
     function save_slider( $post_id ) {
         // Verify nonce
         if ( !isset( $_POST['rss_metabox_nonce'] ) || !wp_verify_nonce( $_POST['rss_metabox_nonce'], basename( __FILE__ ) ) ) {
@@ -384,7 +371,6 @@ class Rather_Simple_Slider {
         }
         
     }
-
     
     /**
      * shortcode_slider
@@ -393,7 +379,6 @@ class Rather_Simple_Slider {
         $html = $this->shortcode_atts( $attr );
         return $html;
     }
-
     
     /**
      * shortcode_atts
@@ -409,7 +394,6 @@ class Rather_Simple_Slider {
         }
         return $html;
     }
-
     
     /**
      * show_slider
@@ -421,8 +405,7 @@ class Rather_Simple_Slider {
         }
         echo $html;
     }
-    
-    
+   
     /**
      * slider_markup
      */
@@ -535,7 +518,6 @@ class Rather_Simple_Slider {
         return $html;
 
     }
-
     
     /**
      * Displays the media button
@@ -564,7 +546,6 @@ class Rather_Simple_Slider {
         <?php
 
     }
-
     
     /**
      * Prints the thickbox for our media button
@@ -633,11 +614,10 @@ class Rather_Simple_Slider {
             </div>
         <?php
     }
-
     
-    /*
-    * slider_columns
-    */
+    /**
+     * slider_columns
+     */
     function slider_columns( $columns ) {
         $new = array();
         foreach( $columns as $key => $value ) {
@@ -650,10 +630,9 @@ class Rather_Simple_Slider {
         return $new;
     }
 
-
-    /*
-    * slider_custom_column
-    */
+    /**
+     * slider_custom_column
+     */
     function slider_custom_column( $column, $post_id ) {
         switch ( $column ) {
             case 'shortcode':
@@ -663,9 +642,9 @@ class Rather_Simple_Slider {
         }
     }
 
-    /*
-    * attachment_fields_to_edit
-    */
+    /**
+     * attachment_fields_to_edit
+     */
     function attachment_fields_to_edit( $form_fields, $post ) {
         $form_fields['oembed-header']['tr'] = '
             <tr>
@@ -695,10 +674,9 @@ class Rather_Simple_Slider {
         return $form_fields;
     }
 
-
-    /*
-    * attachment_fields_to_save
-    */
+    /**
+     * attachment_fields_to_save
+     */
     function attachment_fields_to_save( $post, $attachment ) {
         if ( isset( $attachment['oembed-url'] ) ) {
             $url = $attachment['oembed-url'];
@@ -736,7 +714,6 @@ class Rather_Simple_Slider {
         }
         return $post;
     }
-
 
     /**
      * Registers block
