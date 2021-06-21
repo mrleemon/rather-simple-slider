@@ -4,7 +4,7 @@
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
   "dependencies": {
-    "npm-check-updates": "^11.6.0"
+    "npm-check-updates": "^11.7.1"
   },
   "devDependencies": {
     "@wordpress/scripts": "^16.1.2",
