@@ -68,6 +68,8 @@ class Rather_Simple_Slider {
 
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+        add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
+
         add_action( 'save_post_slider', array( $this, 'save_slider' ) );
         add_action( 'media_buttons', array( $this, 'display_button' ) );
         add_filter( 'wp_editor_settings', array( $this, 'slider_editor_settings' ) );
@@ -174,6 +176,22 @@ class Rather_Simple_Slider {
 
         register_post_type( 'slider', $args );
         
+    }
+
+    /**
+     * Enqueues block assets
+     *
+     * @since 1.0
+     */
+    function enqueue_block_editor_assets() {
+
+        // Load styles
+        wp_enqueue_style( 'slick-css', plugins_url( '/assets/css/slick.css', __FILE__ ) );
+
+        // Load scripts
+        wp_enqueue_script( 'slick-js', plugins_url( '/assets/js/slick.min.js', __FILE__ ), array( 'jquery' ), false );
+        wp_enqueue_script( 'backend', plugins_url( '/assets/js/frontend.js', __FILE__ ), array( 'jquery', 'slick-js' ), false );
+      
     }
 
     /**
@@ -785,7 +803,7 @@ class Rather_Simple_Slider {
         if ( $attr['id'] ) {
             $html = $this->slider_markup( $attr['id'] );
         }
-        
+
         return $html;
     }
 
