@@ -760,12 +760,33 @@ class Rather_Simple_Slider {
 
         register_block_type( 'occ/rather-simple-slider', array(
             'editor_style'  => 'rather-simple-slider-block-editor-css',
+            'style'         => 'rather-simple-slider-block-css',
             'editor_script' => 'rather-simple-slider-block',
-            'style' => 'rather-simple-slider-block-css',
-        ) );
+            'render_callback' => array( $this, 'render_block' ),
+                'attributes' => array(
+                    'id' => array(
+                        'type'    => 'integer',
+                        'default' => 0,
+                    ),
+                ),
+            ),
+        );
 
         wp_set_script_translations( 'rather-simple-slider-block', 'rather-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
 
+    }
+
+    /**
+     * render_block
+     */
+    function render_block( $attr, $content ) {
+        $html = '';
+
+        if ( $attr['id'] ) {
+            $html = $this->slider_markup( $attr['id'] );
+        }
+        
+        return $html;
     }
 
 }

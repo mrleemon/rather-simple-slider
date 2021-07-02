@@ -1,11 +1,20 @@
 /**
  * WordPress dependencies
  */
-import { registerBlockType } from '@wordpress/blocks';
-import { G, Path, SVG, Placeholder, SelectControl } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
-import { RawHTML } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { Fragment } from '@wordpress/element';
+import {
+    G,
+    Path,
+    SVG,
+    Disabled,
+    PanelBody,
+    SelectControl,
+} from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { registerBlockType } from '@wordpress/blocks';
+import { useSelect } from '@wordpress/data';
+import ServerSideRender from '@wordpress/server-side-render';
 
 /**
  * Internal dependencies
@@ -31,7 +40,7 @@ export const settings = {
     edit: ( props => {
         const { attributes, className } = props;
 
-        const posts = useSelect(
+        const sliders = useSelect(
             ( select ) => select( 'core' ).getEntityRecords( 'postType', 'slider', { per_page: -1, orderby: 'title', order: 'asc', _fields: 'id,title' } ),
             []
         );
@@ -40,11 +49,11 @@ export const settings = {
             props.setAttributes( { id: Number( value ) } );
         };
 
-        if ( ! posts ) {
+        if ( ! sliders ) {
             return __( 'Loading...', 'rather-simple-slider' );
         }
 
-        if ( posts.length === 0 ) {
+        if ( sliders.length === 0 ) {
             return __( 'No sliders found', 'rather-simple-slider' );
         }
 
@@ -54,37 +63,42 @@ export const settings = {
             value: ''
         } );
 
-        for ( var i = 0; i < posts.length; i++ ) {
+        for ( var i = 0; i < sliders.length; i++ ) {
             options.push( {
-                label: posts[i].title.raw,
-                value: posts[i].id
+                label: sliders[i].title.raw,
+                value: sliders[i].id
             } );
         }
 
         return (
-            <Placeholder
-                key='rather-simple-slider-block'
-                icon='images-alt2'
-                label={ __( 'Rather Simple Slider', 'rather-simple-slider' ) }
-                className={ className }>
-                    <SelectControl
-                        label={ __( 'Select a slider:', 'rather-simple-slider' ) }
-                        value={ attributes.id }
-                        options={ options }
-                        onChange={ setID }
-                    />
-            </Placeholder>
+            <Fragment>
+				<InspectorControls>
+					<PanelBody
+						title={ __( 'Settings', 'rather-simple-slider' ) }
+					>
+                        <SelectControl
+                            label={ __( 'Select a slider:', 'rather-simple-slider' ) }
+                            value={ attributes.id }
+                            options={ options }
+                            onChange={ setID }
+                        />
+                    </PanelBody>
+                </InspectorControls>
+				<Disabled>
+					<ServerSideRender
+						block="occ/rather-simple-slider"
+						attributes={ attributes }
+						className={ className }
+					/>
+				</Disabled>
+            </Fragment>
         );
 
     } ),
 
-    save( { attributes } ) {
-        const { id } = attributes;
-        var shortcode = '[slider id="' + id + '"]';
-        return (
-            <RawHTML>{ shortcode }</RawHTML>
-        );
-    },
+    save: () => {
+		return null;
+	},
 
 };
 
