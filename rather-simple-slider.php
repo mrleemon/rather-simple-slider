@@ -121,12 +121,13 @@ class Rather_Simple_Slider {
      * enqueue_scripts
      */
     function enqueue_scripts() {
-        // Enqueue styles
-        wp_enqueue_style( 'slick-css', plugins_url( '/assets/css/slick.css', __FILE__ ) );
+        // Load styles
+        wp_enqueue_style( 'swiper-css', plugins_url( '/assets/css/swiper-bundle.min.css', __FILE__ ) );
         wp_enqueue_style( 'rather-simple-slider-css', plugins_url( '/style.css', __FILE__ ), array( 'dashicons' ) );
-        // Enqueue scripts
-        wp_enqueue_script( 'slick', plugins_url( '/assets/js/slick.min.js', __FILE__ ), array( 'jquery' ), false );
-        wp_enqueue_script( 'rather-simple-slider-frontend', plugins_url( '/assets/js/frontend.js', __FILE__ ), array( 'jquery', 'slick' ), false );
+
+        // Load scripts
+        wp_enqueue_script( 'swiper', plugins_url( '/assets/js/swiper-bundle.min.js', __FILE__ ) );
+        wp_enqueue_script( 'rather-simple-slider-frontend', plugins_url( '/assets/js/frontend.js', __FILE__ ), array( 'jquery', 'swiper' ) );
     }
 
     /**
@@ -440,14 +441,19 @@ class Rather_Simple_Slider {
 
         $attachments = array_filter( explode( ',', $slider_items ) );
         if ( ! empty( $attachments ) ) {
-        
+
+            $attrs = array(
+                'fx'   => $slider_fx,
+                'auto' => $slider_auto,
+            );
+
             $html = '<!-- Begin slider markup -->
             
-                    <div id="slider-' . esc_attr( $id ) . '" class="slider text-position-' . esc_attr( $slider_text_position ) . '">';
+                    <div id="slider-' . esc_attr( $id ) . '" class="slider swiper text-position-' . esc_attr( $slider_text_position ) . '" data-swiper="' . esc_attr( json_encode( $attrs ) ) . '">';
 
             if ( $slider_text_position === 'hidden' ) {
                 $html .= '<div class="slider-switch">
-                            <span class="toggle-text">' . __( 'text', 'rather-simple-slider' ) . '</span>
+                            <span class="toggle-text toggled-on">' . __( 'text', 'rather-simple-slider' ) . '</span>
                             <span class="toggle-media">' . __( 'images', 'rather-simple-slider' ) . '</span>
                             </div>
                             <div class="slider-text">
@@ -469,32 +475,12 @@ class Rather_Simple_Slider {
                     </div>';
             }
 
-            $attrs = array(
-                'fade' => ( $slider_fx === 'fade' ) ? true : false,
-                'autoplay' => $slider_auto,
-                'speed' => 500,
-                'adaptiveHeight' => true,
-                'appendArrows' => false,
-                'pauseOnFocus' => false,
-                'cssEase' => 'linear',
-                'lazyLoad' => 'anticipated',
-                'prevArrow' => sprintf( '#slider-%d .slider-navigation .slider-prev', $id ),
-                'nextArrow' => sprintf( '#slider-%1$d .slider-navigation .slider-next, #slider-%2$d .slide', $id, $id ),
-            );
-
-            $html .= "<div class='slider-items'";
-            
-            if ( count( $attachments ) > 1 ) {
-                // Enable the slider only when there's more than one slide
-                $html .= " data-slick='" . json_encode( $attrs ) . "'";
-            }
-
-            $html .= ">";
+            $html .= '<div class="swiper-wrapper toggled-on">';
 
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
                     $attachment = get_post( $attachment_id );
-                    $html .= '<div class="slide">';
+                    $html .= '<div class="swiper-slide">';
                     $oembed_url = get_post_meta( $attachment_id, '_rss_slider_oembed_url', true );
                     if ( $oembed_url != '' ) {
                         $oembed_width = (int) get_post_meta( $attachment_id, '_rss_slider_oembed_width', true );

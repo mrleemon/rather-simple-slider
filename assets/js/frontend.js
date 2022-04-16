@@ -1,32 +1,53 @@
-( function( $ ) {
+document.addEventListener( 'DOMContentLoaded', function( e ) {
 
-    $( function() {
-    
-        $( '.slider' ).each( function() {
+    var swipers = document.querySelectorAll( '.swiper' );
 
-            var slider = $( this );
+    swipers.forEach( function( item ) {
 
-            $( '.slider-items', slider ).slick();
+        var settings = JSON.parse( item.dataset.swiper );
+        var swiper = new Swiper( item, {
+            loop: true,
+            effect: settings.fx,
+            fadeEffect: {
+                crossFade: true
+            },
+            centeredSlides: false,
+            autoHeight: false,
+            observer: true,
+            autoplay: settings.auto ? {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            } : false,
+            navigation: {
+                nextEl: '.swiper .slider-navigation .slider-next',
+                prevEl: '.swiper .slider-navigation .slider-prev',
+            }
+        });
 
-            $( '.toggle-text', slider ).on( 'click', function() {
-                $( '.slider-text', slider ).show();
-                $( '.slider-navigation', slider ).hide();
-                $( '.slider-items', slider ).hide();
-                $( this, slider ).hide();
-                $( '.toggle-media', slider ).show();
-            } );
-        
-            $( '.toggle-media', slider ).on( 'click', function() {
-                $( '.slider-text', slider ).hide();
-                $( '.slider-navigation', slider ).show();
-                $( '.slider-items', slider ).show();
-                $( this, slider ).hide();
-                $( '.toggle-text', slider ).show();
-            } );
-        
-        } );
+        var elText = item.querySelector( '.slider-switch .toggle-text' );
+        var elMedia = item.querySelector( '.slider-switch .toggle-media' );
 
-    } );
+        if ( elText ) {
+            elText.addEventListener( 'click', function( e ) {
+                e.preventDefault();
+                elText.classList.toggle( 'toggled-on' );
+                elMedia.classList.toggle( 'toggled-on' );
+                item.querySelector( '.slider-text, .swiper-wrapper' ).classList.toggle( 'toggled-on' );
+                item.querySelector( '.swiper-wrapper' ).classList.toggle( 'toggled-on' );
+            });
+        }
 
-} )( jQuery );
+        if ( elMedia ) {
+            elMedia.addEventListener( 'click', function( e ) {
+                e.preventDefault();
+                elText.classList.toggle( 'toggled-on' );
+                elMedia.classList.toggle( 'toggled-on' );
+                item.querySelector( '.slider-text, .swiper-wrapper' ).classList.toggle( 'toggled-on' );
+                item.querySelector( '.swiper-wrapper' ).classList.toggle( 'toggled-on' );
+            });
+        }
 
+    });
+
+});
