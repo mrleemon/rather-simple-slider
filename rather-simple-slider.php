@@ -480,7 +480,7 @@ class Rather_Simple_Slider {
             foreach ( $attachments as $attachment_id ) {
                 if ( wp_attachment_is_image( $attachment_id ) ) {
                     $attachment = get_post( $attachment_id );
-                    $html .= '<div class="swiper-slide">';
+                    $html .= '<div class="swiper-slide"><figure>';
                     $oembed_url = get_post_meta( $attachment_id, '_rss_slider_oembed_url', true );
                     if ( $oembed_url != '' ) {
                         $oembed_width = (int) get_post_meta( $attachment_id, '_rss_slider_oembed_width', true );
@@ -492,8 +492,8 @@ class Rather_Simple_Slider {
                         $html .= wp_get_attachment_image( $attachment_id, 'full' );
                     }
 
-                    $html .= '<div class="slide-caption">' . $attachment->post_content . '</div>';
-                    $html .= '</div>';
+                    $html .= '<figcaption class="slide-caption">' . $attachment->post_content . '</figcaption>';
+                    $html .= '</figure></div>';
                 }
             }
 
@@ -660,20 +660,20 @@ class Rather_Simple_Slider {
             'label' => __( 'URL' ),
             'input' => 'html',
             'html' => '<input class="text" id="attachments-' . $post->ID . '-oembed-url" name="attachments[' . $post->ID . '][oembed-url]" type="url"
-                        value="' . get_post_meta( $post->ID, '_rss_slider_oembed_url', true ) . '" />',
+                        value="' . esc_url( get_post_meta( $post->ID, '_rss_slider_oembed_url', true ) ) . '" />',
             'helps' => __( 'If provided, this media item will be displayed instead of the image', 'rather-simple-slider' )
         );
         $form_fields['oembed-width'] = array(
             'label' => __( 'Width' ),
             'input' => 'html',
             'html' => '<input class="text" id="attachments-' . $post->ID . '-oembed-width" name="attachments[' . $post->ID . '][oembed-width]" type="number" min="1"
-                        value="' . get_post_meta( $post->ID, '_rss_slider_oembed_width', true ) .'" />'
+                        value="' . esc_attr( get_post_meta( $post->ID, '_rss_slider_oembed_width', true ) ) .'" />'
         );
         $form_fields['oembed-height'] = array(
             'label' => __( 'Height' ),
             'input' => 'html',
             'html' => '<input class="text" id="attachments-' . $post->ID . '-oembed-height" name="attachments[' . $post->ID . '][oembed-height]" type="number" min="1"
-                        value="' . get_post_meta( $post->ID, '_rss_slider_oembed_height', true ) .'" />'
+                        value="' . esc_attr( get_post_meta( $post->ID, '_rss_slider_oembed_height', true ) ) .'" />'
         );
         return $form_fields;
     }
