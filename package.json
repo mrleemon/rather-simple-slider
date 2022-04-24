@@ -7,7 +7,7 @@
     "npm-check-updates": "^12.5.9"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^22.4.0",
+    "@wordpress/scripts": "^22.5.0",
     "po2json": "^1.0.0-beta-2"
   },
   "scripts": {
