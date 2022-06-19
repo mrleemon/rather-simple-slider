@@ -24,11 +24,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ *
+ * @package rather_simple_slider
+ */
+
+/**
+ * Core class used to implement the plugin.
  */
 class Rather_Simple_Slider {
 
 	/**
-	 * Plugin instance.
+	 * Plugin instance
 	 *
 	 * @var object $instance
 	 */
@@ -48,7 +54,7 @@ class Rather_Simple_Slider {
 	}
 
 	/**
-	 * Used for regular plugin work.
+	 * Used for regular plugin work
 	 */
 	public function plugin_setup() {
 
@@ -97,7 +103,7 @@ class Rather_Simple_Slider {
 	 * Loads Language
 	 */
 	public function load_language() {
-		load_plugin_textdomain( 'rather-simple-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'rather-simple-slider', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	}
 
 	/**
@@ -372,6 +378,8 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Shortcode slider
+	 *
+	 * @param array $attr  An array of attributes.
 	 */
 	public function shortcode_slider( $attr ) {
 		$html = $this->shortcode_atts( $attr );
@@ -380,6 +388,8 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Shortcode attributes
+	 *
+	 * @param array $attr  An array of attributes.
 	 */
 	public function shortcode_atts( $attr ) {
 		$atts = shortcode_atts(
@@ -469,7 +479,7 @@ class Rather_Simple_Slider {
 					$attachment = get_post( $attachment_id );
 					$html      .= '<div class="swiper-slide"><figure>';
 					$oembed_url = get_post_meta( $attachment_id, '_rss_slider_oembed_url', true );
-					if ( $oembed_url != '' ) {
+					if ( '' !== $oembed_url ) {
 						$oembed_width  = (int) get_post_meta( $attachment_id, '_rss_slider_oembed_width', true );
 						$oembed_height = (int) get_post_meta( $attachment_id, '_rss_slider_oembed_height', true );
 						$oembed_width  = ! empty( $oembed_width ) ? $oembed_width : 800;
@@ -518,6 +528,8 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Displays the media button
+	 *
+	 * @param string $editor_id  Unique editor identifier, e.g. 'content'.
 	 */
 	public function display_button( $editor_id = 'content' ) {
 		// Print the button's HTML and CSS.
@@ -561,18 +573,18 @@ class Rather_Simple_Slider {
 				 */
 				function insertSlider() {
 
-					// Get the slider ID
+					// Get the slider ID.
 					var id = jQuery( '#slider' ).val();
 
-					// Display alert and bail if no slideshow was selected
+					// Display alert and bail if no slideshow was selected.
 					if ( '-1' === id ) {
 						return alert( "<?php _e( 'Please select a Slider', 'rather-simple-slider' ); ?>" );
 					}
 
-					// Send shortcode to editor
+					// Send shortcode to editor.
 					send_to_editor( '[<?php echo esc_attr( 'slider' ); ?> id=\"'+ id +'\"]' );
 
-					// Close thickbox
+					// Close thickbox.
 					tb_remove();
 
 				}
@@ -612,6 +624,8 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Slider columns
+	 *
+	 * @param array $columns An associative array of column headings.
 	 */
 	public function slider_columns( $columns ) {
 		$new = array();
@@ -627,6 +641,9 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Slider custom column
+	 *
+	 * @param string  $column   The name of the column to display.
+	 * @param integer $post_id  The post ID.
 	 */
 	public function slider_custom_column( $column, $post_id ) {
 		switch ( $column ) {
@@ -639,6 +656,9 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Attachment fields to edit
+	 *
+	 * @param array  $form_fields  An array of attachment form fields.
+	 * @param object $post         The WP_Post attachment object.
 	 */
 	public function attachment_fields_to_edit( $form_fields, $post ) {
 		$form_fields['oembed-header']['tr'] = '
@@ -671,6 +691,9 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Attachment fields to save
+	 * 
+	 * @param array $post        An array of post data.
+	 * @param array $attachment  An array of attachment metadata.
 	 */
 	public function attachment_fields_to_save( $post, $attachment ) {
 		if ( isset( $attachment['oembed-url'] ) ) {
@@ -712,6 +735,8 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Registers block
+	 *
+	 * @throws Error If block is not built.
 	 */
 	public function register_block() {
 
@@ -773,6 +798,9 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Render block
+	 *
+	 * @param array  $attr     The block attributes.
+	 * @param string $content  The content.
 	 */
 	public function render_block( $attr, $content ) {
 		$html = '';
