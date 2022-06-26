@@ -232,6 +232,8 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Removes media buttons from slider post type.
+	 *
+	 * @param array $settings  An array of editor arguments.
 	 */
 	public function slider_editor_settings( $settings ) {
 		$current_screen = get_current_screen();
@@ -382,6 +384,8 @@ class Rather_Simple_Slider {
 
 	/**
 	 * Save slider
+	 *
+	 * @param integer $post_id  The slider ID.
 	 */
 	public function save_slider( $post_id ) {
 		// Verify nonce.
