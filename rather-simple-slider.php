@@ -4,7 +4,7 @@
  * Plugin URI:
  * Update URI: false
  * Version: 1.0
- * Requires at least: 5.3
+ * Requires at least: 5.8
  * Requires PHP: 7.0
  * Author: Oscar Ciutat
  * Author URI: http://oscarciutat.com/code/
@@ -799,54 +799,17 @@ class Rather_Simple_Slider {
 			return;
 		}
 
-		$dir               = dirname( __FILE__ );
-		$script_asset_path = "$dir/build/index.asset.php";
-		if ( ! file_exists( $script_asset_path ) ) {
-			throw new Error(
-				'You need to run `npm start` or `npm run build` for the block first.'
-			);
-		}
-		$script_asset = require $script_asset_path;
-
-		wp_register_style(
-			'rather-simple-slider-block-editor-css',
-			plugins_url( 'build/index.css', __FILE__ ),
-			array( 'wp-edit-blocks' ),
-			filemtime( plugin_dir_path( __FILE__ ) . 'build/index.css' )
-		);
-
-		wp_register_style(
-			'rather-simple-slider-block-css',
-			plugins_url( 'build/style-index.css', __FILE__ ),
-			null,
-			filemtime( plugin_dir_path( __FILE__ ) . 'build/style-index.css' )
-		);
-
-		wp_register_script(
-			'rather-simple-slider-block',
-			plugins_url( 'build/index.js', __FILE__ ),
-			$script_asset['dependencies'],
-			filemtime( plugin_dir_path( __FILE__ ) . 'build/index.js' ),
-			true
-		);
-
+		// Register the block by passing the location of block.json to register_block_type.
 		register_block_type(
-			'occ/rather-simple-slider',
+			__DIR__ . '/build/blocks/slider',
 			array(
-				'editor_style'    => 'rather-simple-slider-block-editor-css',
-				'style'           => 'rather-simple-slider-block-css',
-				'editor_script'   => 'rather-simple-slider-block',
 				'render_callback' => array( $this, 'render_block' ),
-				'attributes'      => array(
-					'id' => array(
-						'type'    => 'integer',
-						'default' => 0,
-					),
-				),
-			),
+			)
 		);
 
-		wp_set_script_translations( 'rather-simple-slider-block', 'rather-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
+		// Load translations.
+		$script_handle = generate_block_asset_handle( 'occ/rather-simple-slider', 'editorScript' );
+		wp_set_script_translations( $script_handle, 'rather-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
 
 	}
 

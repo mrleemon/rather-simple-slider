@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "occ/rather-simple-slider",
+	"title": "Rather Simple Slider",
+    "description": "Display a slider.",
+	"textdomain": "rather-simple-slider",
+	"category": "common",
+    "attributes": {
+        "id": {
+            "type": "integer",
+			"default": 0
+        }
+    },
+	"supports": {
+		"spacing": {
+			"margin": true,
+			"padding": true
+		}
+	},
+    "editorScript": "file:./index.js",
+    "style": "file:./style-index.css",
+	"editorStyle": "file:./index.css"
+}
