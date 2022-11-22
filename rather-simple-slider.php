@@ -549,7 +549,7 @@ class Rather_Simple_Slider {
 						$html .= wp_get_attachment_image( $attachment_id, 'full' );
 					}
 
-					$html .= '<figcaption class="slide-caption">' . $attachment->post_content . '</figcaption>';
+					$html .= '<figcaption class="slide-caption wp-element-caption">' . $attachment->post_content . '</figcaption>';
 					$html .= '</figure></div>';
 				}
 			}
