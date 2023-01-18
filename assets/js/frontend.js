@@ -2,9 +2,7 @@
 
 	document.addEventListener('DOMContentLoaded', function (e) {
 
-		var swipers = document.querySelectorAll('.swiper');
-
-		swipers.forEach(function (item) {
+		document.querySelectorAll('.swiper').forEach(function (item) {
 
 			var settings = JSON.parse(item.dataset.swiper);
 			var swiper = new Swiper(item, {
