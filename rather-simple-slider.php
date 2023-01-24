@@ -130,14 +130,14 @@ class Rather_Simple_Slider {
 			plugins_url( '/assets/js/swiper-bundle.min.js', __FILE__ ),
 			array(),
 			filemtime( plugin_dir_path( __FILE__ ) . '/assets/js/swiper-bundle.min.js' ),
-			false
+			true
 		);
 		wp_enqueue_script(
 			'rather-simple-slider-frontend',
 			plugins_url( '/assets/js/frontend.js', __FILE__ ),
 			array( 'jquery', 'swiper' ),
 			filemtime( plugin_dir_path( __FILE__ ) . '/assets/js/frontend.js' ),
-			false
+			true
 		);
 	}
 
