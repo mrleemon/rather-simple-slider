@@ -50,7 +50,6 @@ class Rather_Simple_Slider {
 		}
 
 		return self::$instance;
-
 	}
 
 	/**
@@ -86,7 +85,6 @@ class Rather_Simple_Slider {
 		add_action( 'admin_footer', array( $this, 'print_thickbox' ) );
 
 		add_shortcode( 'slider', array( $this, 'shortcode_slider' ) );
-
 	}
 
 	/**
@@ -196,7 +194,6 @@ class Rather_Simple_Slider {
 		);
 
 		register_post_type( 'slider', $args );
-
 	}
 
 	/**
@@ -227,7 +224,6 @@ class Rather_Simple_Slider {
 			filemtime( plugin_dir_path( __FILE__ ) . '/assets/js/frontend.js' ),
 			false
 		);
-
 	}
 
 	/**
@@ -389,7 +385,7 @@ class Rather_Simple_Slider {
 	 */
 	public function save_slider( $post_id ) {
 		// Verify nonce.
-		if ( ! isset( $_POST['rss_metabox_nonce'] ) || ! wp_verify_nonce( $_POST['rss_metabox_nonce'], basename( __FILE__ ) ) ) {
+		if ( ! isset( $_POST['rss_metabox_nonce'] ) || ! wp_verify_nonce( wp_unslash( $_POST['rss_metabox_nonce'] ), basename( __FILE__ ) ) ) {
 			return $post_id;
 		}
 
@@ -411,23 +407,22 @@ class Rather_Simple_Slider {
 
 		if ( isset( $_POST['post_type'] ) && ( 'slider' === $_POST['post_type'] ) ) {
 
-			$slider_fx = isset( $_POST['slider_fx'] ) ? sanitize_text_field( $_POST['slider_fx'] ) : 'fade';
+			$slider_fx = isset( $_POST['slider_fx'] ) ? sanitize_text_field( wp_unslash( $_POST['slider_fx'] ) ) : 'fade';
 			update_post_meta( $post_id, '_rss_slider_fx', $slider_fx );
 
-			$slider_text_position = isset( $_POST['slider_text_position'] ) ? sanitize_text_field( $_POST['slider_text_position'] ) : 'before';
+			$slider_text_position = isset( $_POST['slider_text_position'] ) ? sanitize_text_field( wp_unslash( $_POST['slider_text_position'] ) ) : 'before';
 			update_post_meta( $post_id, '_rss_slider_text_position', $slider_text_position );
 
-			$slider_navigation = isset( $_POST['slider_navigation'] ) ? sanitize_text_field( $_POST['slider_navigation'] ) : 'before';
+			$slider_navigation = isset( $_POST['slider_navigation'] ) ? sanitize_text_field( wp_unslash( $_POST['slider_navigation'] ) ) : 'before';
 			update_post_meta( $post_id, '_rss_slider_navigation', $slider_navigation );
 
-			$slider_auto = isset( $_POST['slider_auto'] ) ? $_POST['slider_auto'] : '';
+			$slider_auto = isset( $_POST['slider_auto'] ) ? wp_unslash( $_POST['slider_auto'] ) : '';
 			update_post_meta( $post_id, '_rss_slider_auto', $slider_auto );
 
-			$attachment_ids = isset( $_POST['slider_items'] ) ? array_filter( explode( ',', sanitize_text_field( $_POST['slider_items'] ) ) ) : array();
+			$attachment_ids = isset( $_POST['slider_items'] ) ? array_filter( explode( ',', sanitize_text_field( wp_unslash( $_POST['slider_items'] ) ) ) ) : array();
 			update_post_meta( $post_id, '_rss_slider_items', implode( ',', $attachment_ids ) );
 
 		}
-
 	}
 
 	/**
@@ -577,7 +572,6 @@ class Rather_Simple_Slider {
 		}
 
 		return $html;
-
 	}
 
 	/**
@@ -605,7 +599,6 @@ class Rather_Simple_Slider {
 				<span class="wp-media-buttons-icon dashicons dashicons-format-image"></span><?php _e( 'Add Slider', 'rather-simple-slider' ); ?>
 			</a>
 		<?php
-
 	}
 
 	/**
@@ -810,16 +803,14 @@ class Rather_Simple_Slider {
 		// Load translations.
 		$script_handle = generate_block_asset_handle( 'occ/rather-simple-slider', 'editorScript' );
 		wp_set_script_translations( $script_handle, 'rather-simple-slider', plugin_dir_path( __FILE__ ) . 'languages' );
-
 	}
 
 	/**
 	 * Render block
 	 *
-	 * @param array  $attr     The block attributes.
-	 * @param string $content  The content.
+	 * @param array $attr     The block attributes.
 	 */
-	public function render_block( $attr, $content ) {
+	public function render_block( $attr ) {
 		$html = '';
 
 		if ( $attr['id'] ) {
@@ -828,7 +819,6 @@ class Rather_Simple_Slider {
 
 		return $html;
 	}
-
 }
 
 add_action( 'plugins_loaded', array( Rather_Simple_Slider::get_instance(), 'plugin_setup' ) );
